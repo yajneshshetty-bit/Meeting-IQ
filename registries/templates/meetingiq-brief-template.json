@@ -1,0 +1,21 @@
+{
+  "template_kind": "output",
+  "fields": {
+    "meeting": { "source": "node.meeting.entity" },
+    "account": { "source": "node.account.entity" },
+    "opportunity": { "source": "node.opportunity.entity" },
+    "sections": {
+      "transform": "map_sections",
+      "from": "input.brief_sections",
+      "label_field": "section",
+      "content_template": "{{label}} context for {{meeting.title}} with {{account.name}}.",
+      "with": { "meeting": "node.meeting.entity", "account": "node.account.entity" }
+    },
+    "provenance": {
+      "static": { "template": "meetingiq-brief-template", "experience": "meetingiq.pre-meeting-brief" }
+    }
+  },
+  "output_schema": {
+    "required": ["meeting", "sections", "provenance"]
+  }
+}

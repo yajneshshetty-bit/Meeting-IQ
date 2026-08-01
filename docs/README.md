@@ -20,6 +20,8 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 | [Phase 1 Completion](./phases/PHASE_01_COMPLETION.md) | Phase 1 exit criteria record |
 | [Phase 2 Completion](./phases/PHASE_02_COMPLETION.md) | Phase 2 mock enterprise exit criteria record |
 | [Phase 3 Completion](./phases/PHASE_03_COMPLETION.md) | Phase 3 connector ingestion exit criteria record |
+| [Phase 4 Completion](./phases/PHASE_04_COMPLETION.md) | Phase 4 domain packages exit criteria record |
+| [Role Entitlements](./ROLE_ENTITLEMENTS.md) | Role → entitlement mapping (Phase 4) |
 
 ## Execution Model
 
@@ -33,8 +35,8 @@ Phase 0B → Domain Modeling ✅ Complete
 Phase 1  → Foundation ✅ Complete
 Phase 2  → Mock Enterprise Systems ✅ Complete
 Phase 3  → Connectors ✅ Complete
-Phase 4  → MeetingIQ Domain Packages (next)
-Phase 5  → MeetingIQ Backend (BFF)
+Phase 4  → MeetingIQ Domain Packages ✅ Complete
+Phase 5  → MeetingIQ Backend (BFF) (next)
 Phase 6  → MeetingIQ UI
 Phase 7  → AI Experiences
 Phase 8  → Real-time Runtime

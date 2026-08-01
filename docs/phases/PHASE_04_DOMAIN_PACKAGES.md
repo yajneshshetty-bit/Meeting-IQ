@@ -18,10 +18,10 @@ Read and follow: [`../MEETINGIQ_PHASE1_IMPLEMENTATION.md`](../MEETINGIQ_PHASE1_I
 
 ## Exit Criteria
 
-- [ ] Domain package activated
-- [ ] Profiles and policies registered
-- [ ] Role → entitlement mapping documented
-- [ ] Search profiles return ingested data
+- [x] Domain package activated
+- [x] Profiles and policies registered
+- [x] Role → entitlement mapping documented
+- [x] Search profiles return ingested data
 
 ## Do Not
 

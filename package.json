@@ -14,7 +14,7 @@
     "migrate": "node scripts/migrate.js",
     "seed": "node scripts/seed-dev-users.js",
     "bootstrap": "npm run migrate && npm run seed",
-    "test": "npm run test -w @meetingiq/bff && npm run mock:test && npm run connectors:test",
+    "test": "npm run test -w @meetingiq/bff && npm run mock:test && npm run connectors:test && npm run domain:test",
     "mock:test": "node --test mock-services/tests/*.test.js",
     "mock:start": "docker compose --profile mock up -d",
     "mock:stop": "docker compose --profile mock down",
@@ -22,12 +22,15 @@
     "connectors:sync": "node scripts/sync-connectors.js",
     "connectors:bootstrap-sync": "node scripts/zambyl-bootstrap-sync.js",
     "connectors:test": "node --test connectors/tests/connector-plugins.test.js connectors/tests/integration.test.js",
+    "domain:register": "node scripts/register-domain.js",
+    "domain:test": "node --test packages/domain/tests/*.test.js",
     "lint": "npm run lint -w @meetingiq/bff"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "yaml": "^2.7.0"
   }
 }

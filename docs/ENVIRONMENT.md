@@ -1,6 +1,6 @@
 # Environment Configuration
 
-**Phase:** 0A complete → 0B complete → Phase 1 complete → Phase 2 complete → **Phase 3 complete**
+**Phase:** 0A complete → 0B complete → Phase 1 complete → Phase 2 complete → Phase 3 complete → **Phase 4 complete**
 
 ---
 
@@ -147,6 +147,17 @@ Connectors live in Meeting-IQ repo; registration writes to **Zambyl Postgres** (
 | `ZAMBYL_ADMIN_KEY` | `dev-admin-key` | Admin sync auth |
 | `ZAMBYL_ROOT` | `/home/hp/Desktop/Zambyl` | For `bootstrap-sync` script |
 | `ZAMBYL_INTEGRATION` | — | Set `1` to run full ingestion integration test |
+
+---
+
+## MeetingIQ Domain (Phase 4)
+
+| Script | Purpose |
+|--------|---------|
+| `npm run domain:register` | Register domain package + profiles + policies + templates |
+| `npm run domain:test` | Domain registry and search integration tests |
+
+Domain package: `meetingiq@1.0.0` on `stable` channel. Role mapping: [`docs/ROLE_ENTITLEMENTS.md`](./ROLE_ENTITLEMENTS.md)
 
 ---
 

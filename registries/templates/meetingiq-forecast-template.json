@@ -1,0 +1,18 @@
+{
+  "template_kind": "output",
+  "fields": {
+    "forecast": { "source": "node.forecast.entity" },
+    "committed": { "source": "node.forecast.entity.committed_amount" },
+    "ai_adjusted": { "source": "node.analytics.result.ai_adjusted_amount" },
+    "explanation": {
+      "content_template": "Committed {{committed}} adjusted to {{ai_adjusted}} based on pipeline risk signals.",
+      "with": { "committed": "node.forecast.entity.committed_amount", "ai_adjusted": "node.analytics.result.ai_adjusted_amount" }
+    },
+    "provenance": {
+      "static": { "template": "meetingiq-forecast-template", "experience": "meetingiq.forecast-explanation" }
+    }
+  },
+  "output_schema": {
+    "required": ["forecast", "committed", "ai_adjusted", "explanation", "provenance"]
+  }
+}

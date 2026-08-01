@@ -1,0 +1,18 @@
+{
+  "template_kind": "output",
+  "fields": {
+    "opportunity": { "source": "node.opportunity.entity" },
+    "risk_score": { "source": "node.analytics.result" },
+    "signals": { "source": "node.signals.records" },
+    "explanation": {
+      "content_template": "Risk {{risk_score.level}} for {{opportunity.name}} based on stage {{opportunity.stage}} and signals.",
+      "with": { "opportunity": "node.opportunity.entity", "risk_score": "node.analytics.result" }
+    },
+    "provenance": {
+      "static": { "template": "meetingiq-risk-template", "experience": "meetingiq.risk-analysis" }
+    }
+  },
+  "output_schema": {
+    "required": ["opportunity", "risk_score", "explanation", "provenance"]
+  }
+}

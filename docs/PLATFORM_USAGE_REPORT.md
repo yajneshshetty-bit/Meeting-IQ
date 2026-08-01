@@ -52,14 +52,16 @@ When implementing a feature:
 | User hierarchy + entitlements | BFF auth + policy mapping | No | `GET /api/me` | foundation.test.js |
 | Company Research | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
 | Voice of Customer | Search + Experience Package | `POST /v1/search:query` | No | _TBD_ | _TBD_ |
-| Risk Score | Materialization + Analytics Profile | Experience / analytics | No | _TBD_ | _TBD_ |
-| Live Agenda | Connector + Search Projection | Connector sync → search | No | _TBD_ | _TBD_ |
-| Executive Dashboard | Domain Package + BFF aggregation | Domain entitlements | No | _TBD_ | _TBD_ |
-| Pipeline View | Search Profile + Materialization | `POST /v1/search:query` | No | _TBD_ | _TBD_ |
-| At-risk Deals | Analytics Profile + Experience | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
-| Meeting Cards | Canonical entities + Search | Search projection | No | _TBD_ | _TBD_ |
-| Notifications | BFF + Operations SSE | `GET /v1/operations/{id}/events` | No | _TBD_ | _TBD_ |
-| Approvals | Actions runtime | `POST /v1/actions` | No | _TBD_ | _TBD_ |
+| Risk Score | Materialization + Analytics Profile | Experience / analytics | No | `meetingiq.risk-scoring-v1` | domain.test.js |
+| At-risk Deals | Analytics Profile + Experience | `POST /v1/experiences:execute` | No | `meetingiq.at-risk-v1` | domain.test.js |
+| Meeting Cards | Canonical entities + Search | Search projection | No | `meetingiq.agenda-v1` | integration.test.js |
+| Live Agenda | Connector + Search Projection | Connector sync → search | No | `connectors/` + `registries/search-profiles.json` | integration.test.js |
+| Executive Dashboard | Domain Package + BFF aggregation | Domain entitlements | No | `packages/domain/` | domain.test.js |
+| Pipeline View | Search Profile + Materialization | `POST /v1/search:query` | No | `meetingiq.pipeline-v1` | integration.test.js |
+| Role-based Access | Policy Bundle + BFF enforcement | Policy + entitlements | No | `registries/policy-bundles.json` | domain.test.js |
+| AI Forecast Explanation | Experience Package + Template | `POST /v1/experiences:execute` | No | `meetingiq-forecast-template` | domain.test.js |
+| QBR Narrative | Experience Package | `POST /v1/experiences:execute` | No | _Phase 7_ | _TBD_ |
+| Follow-up Draft | Experience Package + Conversations | Execute + Conversations | No | _Phase 7_ | _TBD_ |
 | CRM Sync | Connector Plugin | `@zambyl/connectors` | No | `connectors/crm/` | connector-plugins.test.js |
 | Calendar Sync | Connector Plugin | `@zambyl/connectors` | No | `connectors/calendar/` | connector-plugins.test.js |
 | Email Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/mail/` | connector-plugins.test.js |
@@ -69,7 +71,7 @@ When implementing a feature:
 | Support Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/support/` | connector-plugins.test.js |
 | ERP Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/erp/` | connector-plugins.test.js |
 | Identity Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/identity/` | connector-plugins.test.js |
-| Search profiles | Registry bindings | `registries/search-profiles.json` | No | `scripts/register-connectors.js` | integration.test.js |
+| Domain package | Domain Package | `meetingiq@1.0.0` | No | `packages/domain/` | domain.test.js |
 | Connector Health | Operations poll | `GET /v1/operations/{id}` | No | _TBD_ | _TBD_ |
 | Freshness Indicators | Materialization metadata | BFF read model | No | _TBD_ | _TBD_ |
 
@@ -79,12 +81,12 @@ When implementing a feature:
 
 | Metric | Value |
 |--------|-------|
-| Total features implemented | 10 |
+| Total features implemented | 14 |
 | Features using Experience Packages | 0 |
-| Features using Search | 1 |
+| Features using Search | 4 |
 | Features using Connectors | 9 |
 | Features using Actions | 0 |
-| Features using Domain Packages | 0 |
+| Features using Domain Packages | 1 |
 | Features using Conversations | 0 |
 | Features using Operations | 0 |
 | Kernel modifications | **0** |
@@ -95,19 +97,19 @@ When implementing a feature:
 
 Check when first used:
 
-- [ ] Domain Package
+- [x] Domain Package
 - [ ] Experience Package
 - [ ] Workflow Package
 - [ ] Trigger Package
 - [x] Connector Plugin
 - [x] Search Profile
-- [ ] Data Profile
-- [ ] Analytics Profile
-- [ ] Template
-- [ ] Policy Bundle
+- [x] Data Profile
+- [x] Analytics Profile
+- [x] Template
+- [x] Policy Bundle
 - [x] Registry Bindings
 - [ ] `POST /v1/experiences:execute`
-- [ ] `POST /v1/search:query`
+- [x] `POST /v1/search:query`
 - [ ] `POST /v1/conversations`
 - [ ] `POST /v1/actions`
 - [ ] `GET /v1/operations/{id}`

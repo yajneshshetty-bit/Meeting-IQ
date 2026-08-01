@@ -11,7 +11,8 @@
 | 1 Foundation (BFF + identity) | ✅ |
 | 2 Mock Enterprise | ✅ |
 | 3 Connectors | ✅ |
-| 4 Domain Packages | 🔜 Next |
+| 4 Domain Packages | ✅ |
+| 5 BFF Business Routes | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -52,6 +53,13 @@ npm run mock:start                      # mock sources :4001–4009
 npm run connectors:register             # register in Zambyl Postgres
 npm run connectors:bootstrap-sync         # ingest all mock data
 npm run connectors:test                   # 31 connector tests
+```
+
+### Domain Packages (Phase 4)
+
+```bash
+npm run domain:register                 # register profiles, policies, templates, activate domain
+npm run domain:test                       # 7 tests
 ```
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):

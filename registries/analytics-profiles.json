@@ -1,0 +1,81 @@
+[
+  {
+    "profile_id": "meetingiq.risk-scoring-v1",
+    "description": "Deterministic opportunity risk scoring from CRM signals",
+    "method_version": "1.0.0",
+    "required_entitlements": ["meetingiq.read"],
+    "spec": {
+      "execution_mode": "rules",
+      "input_bindings": {
+        "records": { "source": "input.opportunities", "map": "payload" }
+      },
+      "rule_set": [
+        {
+          "id": "rule.risk.at_risk",
+          "when": { "field": "risk_level", "op": "eq", "value": "at_risk" },
+          "then": "high",
+          "else": "continue"
+        },
+        {
+          "id": "rule.risk.rising",
+          "when": { "field": "risk_level", "op": "eq", "value": "rising" },
+          "then": "elevated",
+          "else": "continue"
+        },
+        {
+          "id": "rule.risk.low_probability",
+          "when": { "field": "probability", "op": "lt", "value": 0.5 },
+          "then": "elevated",
+          "else": "low"
+        }
+      ]
+    }
+  },
+  {
+    "profile_id": "meetingiq.at-risk-v1",
+    "description": "At-risk deal detection for Command Center KPI",
+    "method_version": "1.0.0",
+    "required_entitlements": ["meetingiq.read"],
+    "spec": {
+      "execution_mode": "rules",
+      "input_bindings": {
+        "records": { "source": "input.opportunities", "map": "payload" }
+      },
+      "rule_set": [
+        {
+          "id": "rule.at_risk.stage",
+          "when": { "field": "stage", "op": "in", "value": ["negotiation", "discovery"] },
+          "then": "candidate",
+          "else": "not_candidate"
+        },
+        {
+          "id": "rule.at_risk.flag",
+          "when": { "field": "risk_level", "op": "in", "value": ["at_risk", "rising"] },
+          "then": "at_risk",
+          "else": "not_at_risk"
+        }
+      ]
+    }
+  },
+  {
+    "profile_id": "meetingiq.forecast-adjustment-v1",
+    "description": "AI-adjusted forecast inputs from committed pipeline",
+    "method_version": "1.0.0",
+    "required_entitlements": ["meetingiq.executive.read"],
+    "spec": {
+      "execution_mode": "simulation",
+      "input_bindings": {
+        "forecast": { "source": "input.forecast" },
+        "opportunities": { "source": "input.opportunities" }
+      },
+      "config": { "risk_discount_factor": 0.12, "expansion_uplift_factor": 0.05 },
+      "simulation": {
+        "output_fields": {
+          "ai_adjusted_amount": { "source": "forecast", "field": "committed_amount", "transform": "apply_risk_discount" },
+          "currency": { "source": "forecast", "field": "currency", "default": "USD" }
+        },
+        "include_scenario_echo": true
+      }
+    }
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "policy_id": "meetingiq.roles.sales-rep",
+    "version": "1.0.0",
+    "policy_kind": "access",
+    "spec": {
+      "role": "ae",
+      "entitlements": ["meetingiq.read", "meetingiq.execute"],
+      "scope": "own_territory",
+      "description": "Account executive — own opportunities, meetings, actions in territory"
+    }
+  },
+  {
+    "policy_id": "meetingiq.roles.manager",
+    "version": "1.0.0",
+    "policy_kind": "access",
+    "spec": {
+      "role": "manager",
+      "entitlements": ["meetingiq.read", "meetingiq.execute", "meetingiq.team.read"],
+      "scope": "direct_reports",
+      "description": "Sales manager — team rollups and inherited scope"
+    }
+  },
+  {
+    "policy_id": "meetingiq.roles.se",
+    "version": "1.0.0",
+    "policy_kind": "access",
+    "spec": {
+      "role": "se",
+      "entitlements": ["meetingiq.read", "meetingiq.execute", "meetingiq.se.read"],
+      "scope": "se_meetings",
+      "description": "Sales engineer — SE-attributed meetings and technical accounts"
+    }
+  },
+  {
+    "policy_id": "meetingiq.roles.vp",
+    "version": "1.0.0",
+    "policy_kind": "access",
+    "spec": {
+      "role": "leader",
+      "entitlements": ["meetingiq.read", "meetingiq.execute", "meetingiq.executive.read"],
+      "scope": "organization",
+      "description": "VP/CRO — org-wide executive pipeline and forecast"
+    }
+  },
+  {
+    "policy_id": "meetingiq.roles.admin",
+    "version": "1.0.0",
+    "policy_kind": "access",
+    "spec": {
+      "role": "admin",
+      "entitlements": ["meetingiq.read", "meetingiq.execute", "meetingiq.admin"],
+      "scope": "organization",
+      "description": "Administrator — full MeetingIQ access"
+    }
+  },
+  {
+    "policy_id": "meetingiq.roles.support",
+    "version": "1.0.0",
+    "policy_kind": "access",
+    "spec": {
+      "role": "support",
+      "entitlements": ["meetingiq.read", "meetingiq.support.read"],
+      "scope": "support_cases",
+      "description": "Support analyst — diagnostic read-only on cases"
+    }
+  },
+  {
+    "policy_id": "meetingiq.redaction.default",
+    "version": "1.0.0",
+    "policy_kind": "redaction",
+    "spec": {
+      "sensitive_fields": ["ssn", "password", "secret", "credential", "api_key"],
+      "replacement": "[REDACTED]"
+    }
+  }
+]

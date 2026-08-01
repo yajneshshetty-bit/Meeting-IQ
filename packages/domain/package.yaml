@@ -1,0 +1,73 @@
+metadata:
+  id: meetingiq
+  version: 1.0.0
+  owner: meetingiq-team
+  compatibility:
+    platformApi: "^1"
+ontology:
+  entities:
+    - account
+    - opportunity
+    - lead
+    - contact
+    - product
+    - meeting
+    - email
+    - conversation
+    - task
+    - document
+    - support_case
+    - forecast
+    - sla
+    - user
+    - organization
+    - territory
+entitlements:
+  - meetingiq.read
+  - meetingiq.execute
+  - meetingiq.team.read
+  - meetingiq.se.read
+  - meetingiq.executive.read
+  - meetingiq.admin
+  - meetingiq.support.read
+corpora:
+  - meetingiq-corpus-accounts
+  - meetingiq-corpus-opportunities
+  - meetingiq-corpus-leads
+  - meetingiq-corpus-meetings
+  - meetingiq-corpus-communications
+  - meetingiq-corpus-documents
+  - meetingiq-corpus-actions
+  - meetingiq-corpus-support
+  - meetingiq-corpus-forecasts
+  - meetingiq-corpus-products
+profiles:
+  data:
+    - meetingiq.meeting-profile
+    - meetingiq.opportunity-profile
+    - meetingiq.account-profile
+    - meetingiq.communication-profile
+  search:
+    - meetingiq.agenda-v1
+    - meetingiq.pipeline-v1
+    - meetingiq.account-v1
+    - meetingiq.voc-v1
+    - meetingiq.executive-pipeline-v1
+  analytics:
+    - meetingiq.risk-scoring-v1
+    - meetingiq.at-risk-v1
+    - meetingiq.forecast-adjustment-v1
+policy:
+  bundles:
+    - meetingiq.roles.sales-rep
+    - meetingiq.roles.manager
+    - meetingiq.roles.se
+    - meetingiq.roles.vp
+    - meetingiq.roles.admin
+    - meetingiq.roles.support
+templates:
+  - meetingiq-brief-template
+  - meetingiq-research-template
+  - meetingiq-voc-template
+  - meetingiq-risk-template
+  - meetingiq-forecast-template
