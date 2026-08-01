@@ -6,7 +6,13 @@ MeetingIQ validates that a real enterprise application can be built entirely on 
 
 ## Status
 
-**Phase 0A — Ready to execute.** Implementation not started.
+**Phase 0A — Complete.** Proceeding to Phase 0B (Domain Modeling).
+
+| Phase | Status |
+|-------|--------|
+| 0A Zambyl Readiness Audit | ✅ Complete — [audit](./docs/ZAMBYL_READINESS_AUDIT.md) |
+| 0B Domain Modeling | 🔜 Next |
+| 1–10 Implementation | Pending |
 
 ## Overarching Success
 
