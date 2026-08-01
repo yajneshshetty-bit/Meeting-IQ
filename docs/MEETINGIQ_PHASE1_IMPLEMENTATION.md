@@ -24,6 +24,14 @@ Success requires:
 2. **Production-quality Meeting Intelligence SaaS** — every Phase 1 PRD capability implemented with real behavior
 3. **Zero kernel modifications** — gaps documented in [`PLATFORM_GAP_LOG.md`](./PLATFORM_GAP_LOG.md), not patched in Core
 
+### Overarching Success Criterion
+
+> **Success is not that MeetingIQ works. Success is that another team could build a completely different application (e.g., BankingIQ) by following the same extension model without requesting kernel changes.**
+
+MeetingIQ is the proof case. The extension model is the product.
+
+Every feature must answer: **Which platform capability validated this?** (see [`PLATFORM_USAGE_REPORT.md`](./PLATFORM_USAGE_REPORT.md))
+
 ---
 
 ## 2. Fresh Start Policy
@@ -353,6 +361,8 @@ Production-quality test coverage:
 | Domain / Experience / Policy packages | 4–7 |
 | [`PLATFORM_USAGE_REPORT.md`](./PLATFORM_USAGE_REPORT.md) | Ongoing → 9 |
 | [`PLATFORM_GAP_LOG.md`](./PLATFORM_GAP_LOG.md) | Ongoing → 9 |
+| [`MEETINGIQ_ARCHITECTURAL_DECISIONS.md`](./MEETINGIQ_ARCHITECTURAL_DECISIONS.md) | Ongoing — application ADRs |
+| [`ENTITY_LIFECYCLE.md`](./ENTITY_LIFECYCLE.md) | Phase 0B → refined through implementation |
 | [`REALTIME_CORRECTNESS_MATRIX.md`](./REALTIME_CORRECTNESS_MATRIX.md) | 8 |
 | PRD traceability matrix | 9 |
 | `PLATFORM_VALIDATION_REPORT.md` | 9 |
@@ -368,29 +378,53 @@ Each phase has a dedicated execution prompt in [`phases/`](./phases/).
 
 ---
 
-### Phase 0 — Repository Audit & Platform Readiness
+### Phase 0A — Zambyl Readiness Audit
 
-**Goal:** Confirm Zambyl v1.0.1 is operational; establish MeetingIQ repo conventions.
+**Goal:** Confirm Zambyl v1.0.1 exposes every primitive MeetingIQ needs. No code.
 
 **Tasks:**
 
-- Clone and bootstrap Zambyl (`npm install`, `npm run bootstrap`, `npm test`)
-- Verify 49/49 tests pass against local Postgres 16
-- Read Zambyl docs: Developer Guide, Connector Guide, Package Author Guide, Kernel Freeze
-- Initialize MeetingIQ repo structure (empty application skeleton — no feature code yet)
-- Document local dev topology in `docs/ENVIRONMENT.md`
+- Bootstrap Zambyl and verify 49/49 tests
+- Read platform guides and freeze policies
+- Produce `ZAMBYL_READINESS_AUDIT.md`: APIs, packages, registries, connectors, policies, profiles
+- Record decisions in `MEETINGIQ_ARCHITECTURAL_DECISIONS.md`
+- Create `ENVIRONMENT.md`
 
 **Exit criteria:**
 
 - [ ] Zambyl bootstrap reproducible
-- [ ] MeetingIQ repo structure defined
-- [ ] No code copied from local prototypes
+- [ ] Readiness audit complete
+- [ ] Platform gap candidates identified (if any)
 
-**Prompt:** [`phases/PHASE_00_REPOSITORY_AUDIT.md`](./phases/PHASE_00_REPOSITORY_AUDIT.md)
+**Prompt:** [`phases/PHASE_00A_ZAMBYL_READINESS_AUDIT.md`](./phases/PHASE_00A_ZAMBYL_READINESS_AUDIT.md)
+
+---
+
+### Phase 0B — MeetingIQ Domain Modeling
+
+**Goal:** Define domain model and entity lifecycles before any implementation. Prevents entity drift.
+
+**Tasks:**
+
+- Define all core entities and relationships (see [`ENTITY_LIFECYCLE.md`](./ENTITY_LIFECYCLE.md))
+- Produce `DOMAIN_MODEL.md` with ERD
+- Map entities → Zambyl canonical types → mock source systems
+- Complete entity lifecycle fields for every entity
+- Document repo directory structure
+
+**Exit criteria:**
+
+- [ ] Domain model and ERD complete
+- [ ] Entity lifecycle document complete
+- [ ] No application code written
+
+**Prompt:** [`phases/PHASE_00B_DOMAIN_MODELING.md`](./phases/PHASE_00B_DOMAIN_MODELING.md)
 
 ---
 
 ### Phase 1 — Foundation
+
+**Prerequisite:** Phase 0B complete.
 
 **Goal:** Project scaffold, BFF skeleton, auth model design, Zambyl connectivity.
 
@@ -621,7 +655,7 @@ Each phase has a dedicated execution prompt in [`phases/`](./phases/).
 MeetingIQ Phase 1 is complete when:
 
 1. Every PRD screenshot capability is implemented with real behavior
-2. Every feature is traced in PLATFORM_USAGE_REPORT to a Zambyl primitive
+2. Every feature is traced in PLATFORM_USAGE_REPORT to a Zambyl primitive — **which platform capability validated this?**
 3. No kernel modifications were required (or all gaps are in PLATFORM_GAP_LOG)
 4. Mock enterprise systems expose independent production-like APIs
 5. Zambyl ingests all sources; MeetingIQ queries only Zambyl
@@ -629,6 +663,7 @@ MeetingIQ Phase 1 is complete when:
 7. AI experiences run through Zambyl with a real LLM
 8. Full test suite passes
 9. Application is runnable from a fresh clone
+10. **Another team could build BankingIQ using the same extension model** — documented in PLATFORM_VALIDATION_REPORT
 
 ---
 

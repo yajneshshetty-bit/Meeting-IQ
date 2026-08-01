@@ -1,6 +1,6 @@
 # Phase 1 — Foundation
 
-**Prerequisite:** Phase 0 complete.
+**Prerequisite:** [Phase 0B complete](./PHASE_00B_DOMAIN_MODELING.md)
 
 ## Authority
 

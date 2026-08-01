@@ -1,10 +1,31 @@
 # Platform Usage Report
 
-> **Purpose:** Prove that MeetingIQ validates the Zambyl Platform by tracing every implemented feature to a platform capability.  
-> **Rule:** Update this document as features are implemented — not at the end.
+> **Purpose:** Prove that MeetingIQ validates the Zambyl Platform.  
+> **Mandatory question for every feature:** **Which platform capability validated this?**
 
 **Platform baseline:** Zambyl v1.0.1 (kernel frozen)  
 **Kernel modified:** Must always be **No** for every row
+
+---
+
+## Platform Validation Map
+
+| MeetingIQ Feature | Zambyl Capability Validated | Kernel Modified? |
+| ----------------- | --------------------------- | ---------------- |
+| Weekly Agenda | Connector + Materialization | No |
+| Research Company | Experience Package | No |
+| Executive Pipeline | Search Projection | No |
+| Voice of Customer | Search + Experience Package | No |
+| Risk Score | Experience + Materialization | No |
+| Notifications | Operations + BFF Events | No |
+| Live Updates | Outbox + Materialization + BFF SSE | No |
+| Pre-meeting Brief | Experience Package | No |
+| Approvals | Actions Runtime | No |
+| CRM Sync | Connector Plugin | No |
+| At-risk Deals | Analytics Profile + Materialization | No |
+| AI Forecast | Experience Package + Template | No |
+
+_Update this table as features are implemented. Add rows to the detailed traceability table below._
 
 ---
 
@@ -12,8 +33,8 @@
 
 When implementing a feature:
 
-1. Add a row below
-2. Specify the exact Zambyl primitive used
+1. Add a row to both tables above
+2. Answer: **Which platform capability validated this?**
 3. Confirm kernel was not modified
 4. Link to implementation path and test
 
@@ -21,8 +42,8 @@ When implementing a feature:
 
 ## Feature Traceability
 
-| Feature | Platform Capability Used | Package / API | Kernel Modified? | Implementation | Test |
-|---------|--------------------------|---------------|------------------|----------------|------|
+| Feature | Platform Capability Validated | Package / API | Kernel Modified? | Implementation | Test |
+|---------|------------------------------|---------------|------------------|----------------|------|
 | Pre-meeting Brief | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
 | Company Research | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
 | Voice of Customer | Search + Experience Package | `POST /v1/search:query` | No | _TBD_ | _TBD_ |

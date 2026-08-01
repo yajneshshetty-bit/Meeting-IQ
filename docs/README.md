@@ -7,8 +7,10 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 | Document | Purpose |
 |----------|---------|
 | [MEETINGIQ_PHASE1_IMPLEMENTATION.md](./MEETINGIQ_PHASE1_IMPLEMENTATION.md) | Master PRD, architecture contract, and phased implementation roadmap |
-| [PLATFORM_USAGE_REPORT.md](./PLATFORM_USAGE_REPORT.md) | Traceability — every feature → platform capability used |
-| [PLATFORM_GAP_LOG.md](./PLATFORM_GAP_LOG.md) | Platform limitations and proposed v1.1 enhancements |
+| [MEETINGIQ_ARCHITECTURAL_DECISIONS.md](./MEETINGIQ_ARCHITECTURAL_DECISIONS.md) | Application ADRs (MIQ-NNN) — record decisions, not commit messages |
+| [ENTITY_LIFECYCLE.md](./ENTITY_LIFECYCLE.md) | Per-entity lifecycle — investigate here when updates fail |
+| [PLATFORM_USAGE_REPORT.md](./PLATFORM_USAGE_REPORT.md) | Every feature → which platform capability validated it |
+| [PLATFORM_GAP_LOG.md](./PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap input |
 | [REALTIME_CORRECTNESS_MATRIX.md](./REALTIME_CORRECTNESS_MATRIX.md) | Expected propagation path per source event |
 
 ## Execution Model
@@ -18,7 +20,8 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 Execute phases sequentially. Each phase prompt lives in [`phases/`](./phases/) and references the master specification.
 
 ```
-Phase 0  → Repository Audit & Platform Readiness
+Phase 0A → Zambyl Readiness Audit (no code)
+Phase 0B → MeetingIQ Domain Modeling (no code)
 Phase 1  → Foundation
 Phase 2  → Mock Enterprise Systems
 Phase 3  → Connectors
@@ -31,14 +34,13 @@ Phase 9  → Validation
 Phase 10 → Production Readiness
 ```
 
+## Overarching Success Criterion
+
+> Success is not that MeetingIQ works. Success is that another team could build BankingIQ using the same extension model without kernel changes.
+
 ## Fresh Start Policy
 
-This repository starts **empty**. Do **not** copy code, configuration, or architecture from:
-
-- `MEETING-IQ(JULY 30)` or any other local prototype
-- Any prior MeetingIQ mock or demo implementation
-
-Prior work may inform **requirements only** (e.g. UI capability lists). All implementation is new.
+This repository starts **empty**. Do **not** copy code from `MEETING-IQ(JULY 30)` or any local prototype.
 
 ## Platform Repository
 

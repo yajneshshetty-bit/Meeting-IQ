@@ -6,18 +6,11 @@ MeetingIQ validates that a real enterprise application can be built entirely on 
 
 ## Status
 
-**Phase 0 — Specification complete. Implementation not started.**
+**Phase 0A — Ready to execute.** Implementation not started.
 
-## Objective
+## Overarching Success
 
-> Can a real enterprise application be built entirely on top of a frozen Zambyl Platform?
-
-MeetingIQ answers this by implementing a production Meeting Intelligence SaaS using only:
-
-- Domain / Experience / Workflow / Trigger packages
-- Profiles, Templates, Policies
-- Connector plugins
-- Registries, SDK, CLI
+> Success is not that MeetingIQ works. Success is that another team could build BankingIQ using the same extension model without kernel changes.
 
 ## Documentation
 
@@ -26,14 +19,22 @@ Start here: [`docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md`](docs/MEETINGIQ_PHASE1_IM
 | Document | Purpose |
 |----------|---------|
 | [Master Implementation Spec](docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md) | Authoritative PRD and phased roadmap |
-| [Platform Usage Report](docs/PLATFORM_USAGE_REPORT.md) | Feature → platform capability traceability |
-| [Platform Gap Log](docs/PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap input |
+| [Architectural Decisions](docs/MEETINGIQ_ARCHITECTURAL_DECISIONS.md) | Application ADRs (MIQ-NNN) |
+| [Entity Lifecycle](docs/ENTITY_LIFECYCLE.md) | Per-entity create/update/invalidate paths |
+| [Platform Usage Report](docs/PLATFORM_USAGE_REPORT.md) | Which platform capability validated each feature |
+| [Platform Gap Log](docs/PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap |
 | [Real-Time Correctness Matrix](docs/REALTIME_CORRECTNESS_MATRIX.md) | Event propagation verification |
 | [Phase Prompts](docs/phases/) | Cursor-executable phase-by-phase prompts |
 
 ## Execution Model
 
-**Do not implement in a single pass.** Execute phases 0–10 sequentially. Each phase validates platform usage before proceeding.
+**Do not implement in a single pass.**
+
+```
+Phase 0A → Zambyl Readiness Audit (no code)
+Phase 0B → Domain Modeling (no code)
+Phase 1–10 → Implementation
+```
 
 ## Fresh Start
 
