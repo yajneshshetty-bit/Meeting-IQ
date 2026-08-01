@@ -1,6 +1,6 @@
 # Environment Configuration
 
-**Phase:** 0A complete → 0B complete → **Phase 1 complete**
+**Phase:** 0A complete → 0B complete → Phase 1 complete → **Phase 2 complete**
 
 ---
 
@@ -98,24 +98,32 @@ Copy `apps/bff/.env.example` to `apps/bff/.env` if overriding defaults.
 
 ---
 
-## Mock Enterprise Services (planned — Phase 2)
+## Mock Enterprise Services (Phase 2)
 
-Each service runs independently with its own database.
+Each service runs independently with its own SQLite database. **MeetingIQ never calls them at runtime** — they are ingestion sources for Zambyl connectors (Phase 3).
 
 | Service | Port | Phase |
 |---------|------|-------|
-| CRM Service | `4001` | 2 |
-| Calendar Service | `4002` | 2 |
-| Mail Service | `4003` | 2 |
-| Slack Service | `4004` | 2 |
-| Document Service | `4005` | 2 |
-| Task Service | `4006` | 2 |
-| Support Service | `4007` | 2 |
-| ERP Service | `4008` | 2 |
-| Identity Service | `4009` | 2 |
-| Event Simulator | `4010` | 2 |
+| CRM Service | `4001` | 2 ✅ |
+| Calendar Service | `4002` | 2 ✅ |
+| Mail Service | `4003` | 2 ✅ |
+| Slack Service | `4004` | 2 ✅ |
+| Document Service | `4005` | 2 ✅ |
+| Task Service | `4006` | 2 ✅ |
+| Support Service | `4007` | 2 ✅ |
+| ERP Service | `4008` | 2 ✅ |
+| Identity Service | `4009` | 2 ✅ |
+| Event Simulator | `4010` | 2 ✅ |
 
-Mock services are **ingestion sources only**. MeetingIQ never calls them directly.
+**Auth:** `x-api-key: mock-enterprise-key` (all services except simulator health)
+
+```bash
+npm run mock:start    # docker compose --profile mock up -d
+npm run mock:test     # 11 integration tests
+npm run mock:stop
+```
+
+Seed data source: `mock-services/seed/enterprise-manifest.js`
 
 ---
 

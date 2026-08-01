@@ -1,3 +1,10 @@
+x-mock-service: &mock-service
+  build:
+    context: .
+    dockerfile: mock-services/Dockerfile
+  profiles: [mock]
+  restart: unless-stopped
+
 services:
   postgres:
     image: postgres:16
@@ -14,6 +21,98 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  mock-crm:
+    <<: *mock-service
+    command: node mock-services/crm/index.js
+    ports: ["4001:4001"]
+    environment:
+      PORT: "4001"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-calendar:
+    <<: *mock-service
+    command: node mock-services/calendar/index.js
+    ports: ["4002:4002"]
+    environment:
+      PORT: "4002"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-mail:
+    <<: *mock-service
+    command: node mock-services/mail/index.js
+    ports: ["4003:4003"]
+    environment:
+      PORT: "4003"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-slack:
+    <<: *mock-service
+    command: node mock-services/slack/index.js
+    ports: ["4004:4004"]
+    environment:
+      PORT: "4004"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-documents:
+    <<: *mock-service
+    command: node mock-services/documents/index.js
+    ports: ["4005:4005"]
+    environment:
+      PORT: "4005"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-tasks:
+    <<: *mock-service
+    command: node mock-services/tasks/index.js
+    ports: ["4006:4006"]
+    environment:
+      PORT: "4006"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-support:
+    <<: *mock-service
+    command: node mock-services/support/index.js
+    ports: ["4007:4007"]
+    environment:
+      PORT: "4007"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-erp:
+    <<: *mock-service
+    command: node mock-services/erp/index.js
+    ports: ["4008:4008"]
+    environment:
+      PORT: "4008"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-identity:
+    <<: *mock-service
+    command: node mock-services/identity/index.js
+    ports: ["4009:4009"]
+    environment:
+      PORT: "4009"
+      MOCK_SIMULATE_LATENCY: "1"
+
+  mock-event-simulator:
+    <<: *mock-service
+    command: node mock-services/event-simulator/index.js
+    ports: ["4010:4010"]
+    depends_on:
+      - mock-crm
+      - mock-mail
+      - mock-support
+      - mock-slack
+      - mock-tasks
+    environment:
+      PORT: "4010"
+      MOCK_SIMULATOR_AUTO: "1"
+      MOCK_SIMULATOR_INTERVAL_MS: "120000"
+      MOCK_CRM_URL: http://mock-crm:4001
+      MOCK_MAIL_URL: http://mock-mail:4003
+      MOCK_SUPPORT_URL: http://mock-support:4007
+      MOCK_SLACK_URL: http://mock-slack:4004
+      MOCK_TASKS_URL: http://mock-tasks:4006
 
 volumes:
   meetingiq_pg_data:

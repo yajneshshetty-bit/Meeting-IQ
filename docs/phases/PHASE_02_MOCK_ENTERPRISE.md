@@ -38,10 +38,10 @@ Additionally:
 
 ## Exit Criteria
 
-- [ ] All 9 services run independently via docker-compose
-- [ ] OpenAPI docs for each service
-- [ ] Event simulator running
-- [ ] Zero dependencies on Zambyl or MeetingIQ
+- [x] All 9 services run independently via docker-compose
+- [x] OpenAPI docs for each service
+- [x] Event simulator running
+- [x] Zero dependencies on Zambyl or MeetingIQ
 
 ## Do Not
 

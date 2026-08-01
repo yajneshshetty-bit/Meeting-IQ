@@ -9,7 +9,8 @@
 | 0A Zambyl Readiness | ✅ |
 | 0B Domain Modeling | ✅ |
 | 1 Foundation (BFF + identity) | ✅ |
-| 2 Mock Enterprise | 🔜 Next |
+| 2 Mock Enterprise | ✅ |
+| 3 Connectors | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -32,6 +33,15 @@ BFF: http://localhost:3001
 curl http://localhost:3001/health
 curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/me
 curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/platform/zambyl
+```
+
+### Mock Enterprise (Phase 2)
+
+```bash
+npm run mock:test                 # 11 tests, no Docker required
+npm run mock:start                # ports 4001–4010 via Docker
+curl -H 'x-api-key: mock-enterprise-key' http://localhost:4001/v1/opportunities
+curl -X POST http://localhost:4010/v1/scenarios/pre_meeting/run
 ```
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):

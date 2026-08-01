@@ -1,0 +1,8 @@
+{
+  "name": "@meetingiq/mock-crm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node index.js", "dev": "node --watch index.js" },
+  "dependencies": { "@meetingiq/mock-common": "0.1.0" }
+}

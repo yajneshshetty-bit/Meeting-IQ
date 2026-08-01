@@ -14,4 +14,7 @@ coverage/
 *.swp
 .tmp/
 .cache/
-platform/.tmp-platform-test/
+.mock-services/**/data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

@@ -17,6 +17,8 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 | [ZAMBYL_READINESS_AUDIT.md](./ZAMBYL_READINESS_AUDIT.md) | Phase 0A — platform readiness verdict (✅ READY) |
 | [ENVIRONMENT.md](./ENVIRONMENT.md) | Local dev topology, ports, env vars |
 | [Phase 0A Completion](./phases/PHASE_00A_COMPLETION.md) | Phase 0A exit criteria record |
+| [Phase 1 Completion](./phases/PHASE_01_COMPLETION.md) | Phase 1 exit criteria record |
+| [Phase 2 Completion](./phases/PHASE_02_COMPLETION.md) | Phase 2 mock enterprise exit criteria record |
 
 ## Execution Model
 
@@ -28,10 +30,8 @@ Execute phases sequentially. Each phase prompt lives in [`phases/`](./phases/) a
 Phase 0A → Zambyl Readiness Audit ✅ Complete
 Phase 0B → Domain Modeling ✅ Complete
 Phase 1  → Foundation ✅ Complete
-Phase 2  → Mock Enterprise Systems (next)
-Phase 1  → Foundation
-Phase 2  → Mock Enterprise Systems
-Phase 3  → Connectors
+Phase 2  → Mock Enterprise Systems ✅ Complete
+Phase 3  → Connectors (next)
 Phase 4  → MeetingIQ Domain Packages
 Phase 5  → MeetingIQ Backend (BFF)
 Phase 6  → MeetingIQ UI

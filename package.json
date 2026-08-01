@@ -5,7 +5,8 @@
   "description": "MeetingIQ — first production application on Zambyl Platform",
   "type": "module",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "mock-services/*"
   ],
   "scripts": {
     "dev": "npm run dev -w @meetingiq/bff",
@@ -13,7 +14,10 @@
     "migrate": "node scripts/migrate.js",
     "seed": "node scripts/seed-dev-users.js",
     "bootstrap": "npm run migrate && npm run seed",
-    "test": "npm run test -w @meetingiq/bff",
+    "test": "npm run test -w @meetingiq/bff && npm run mock:test",
+    "mock:test": "node --test mock-services/tests/*.test.js",
+    "mock:start": "docker compose --profile mock up -d",
+    "mock:stop": "docker compose --profile mock down",
     "lint": "npm run lint -w @meetingiq/bff"
   },
   "engines": {

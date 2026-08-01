@@ -1,0 +1,12 @@
+{
+  "name": "@meetingiq/mock-common",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared utilities for MeetingIQ mock enterprise services",
+  "main": "index.js",
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "fastify": "^5.2.1"
+  }
+}
