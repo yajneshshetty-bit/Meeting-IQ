@@ -21,11 +21,11 @@ function assertFreshness(body) {
   assert.ok(body.freshness.confidence);
 }
 
-test('GET /health reports phase 5', async (t) => {
+test('GET /health reports phase 9', async (t) => {
   await withApp(t, async (app) => {
     const res = await app.inject({ method: 'GET', url: '/health' });
     assert.equal(res.statusCode, 200);
-    assert.equal(res.json().phase, '8-realtime');
+    assert.equal(res.json().phase, '9-validation');
   });
 });
 

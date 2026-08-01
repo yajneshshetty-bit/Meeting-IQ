@@ -30,7 +30,7 @@ export async function buildApp() {
   app.get('/health', async () => ({
     status: 'ok',
     service: 'meetingiq-bff',
-    phase: '8-realtime',
+    phase: '9-validation',
   }));
 
   app.get('/api/me', async (req) => ({

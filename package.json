@@ -29,6 +29,8 @@
     "experiences:generate": "node packages/experiences/generate-packages.js",
     "experiences:test": "node --test packages/experiences/tests/*.test.js",
     "realtime:pre-meeting": "node scripts/pre-meeting-scenario.js",
+    "validation:suite": "node scripts/validation-suite.js",
+    "load:baseline": "node scripts/load-baseline.js",
     "lint": "npm run lint -w @meetingiq/bff"
   },
   "engines": {

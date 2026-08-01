@@ -12,6 +12,8 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 | [ENTITY_LIFECYCLE.md](./ENTITY_LIFECYCLE.md) | Per-entity lifecycle — investigate here when updates fail |
 | [PRD Screenshots](./prd/) | Phase 1 UI requirement reference images |
 | [PLATFORM_USAGE_REPORT.md](./PLATFORM_USAGE_REPORT.md) | Every feature → which platform capability validated it |
+| [PLATFORM_VALIDATION_REPORT.md](./PLATFORM_VALIDATION_REPORT.md) | Phase 9 platform validation conclusion |
+| [PRD_TRACEABILITY_MATRIX.md](./PRD_TRACEABILITY_MATRIX.md) | PRD capability → implementation → test |
 | [PLATFORM_GAP_LOG.md](./PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap input |
 | [REALTIME_CORRECTNESS_MATRIX.md](./REALTIME_CORRECTNESS_MATRIX.md) | Expected propagation path per source event |
 | [ZAMBYL_READINESS_AUDIT.md](./ZAMBYL_READINESS_AUDIT.md) | Phase 0A — platform readiness verdict (✅ READY) |
@@ -36,12 +38,12 @@ Phase 1  → Foundation ✅ Complete
 Phase 2  → Mock Enterprise Systems ✅ Complete
 Phase 3  → Connectors ✅ Complete
 Phase 4  → MeetingIQ Domain Packages ✅ Complete
-Phase 5  → MeetingIQ Backend (BFF) (next)
-Phase 6  → MeetingIQ UI
-Phase 7  → AI Experiences
-Phase 8  → Real-time Runtime
-Phase 9  → Validation
-Phase 10 → Production Readiness
+Phase 5  → MeetingIQ Backend (BFF) ✅ Complete
+Phase 6  → MeetingIQ UI ✅ Complete
+Phase 7  → AI Experiences ✅ Complete
+Phase 8  → Real-time Runtime ✅ Complete
+Phase 9  → Validation ✅ Complete
+Phase 10 → Production Readiness (next)
 ```
 
 ## Overarching Success Criterion

@@ -15,7 +15,9 @@
 | 5 BFF Product API | ✅ |
 | 6 UI | ✅ |
 | 7 AI Experiences | ✅ |
-| 8 Real-time | 🔜 Next |
+| 8 Real-time | ✅ |
+| 9 Validation | ✅ |
+| 10 Production Readiness | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -92,6 +94,16 @@ npm run experiences:register
 curl -X POST -H 'x-meetingiq-user-id: user_alex' -H 'content-type: application/json' \
   http://localhost:3001/api/ai/company-research -d '{"account_id":"acct_acme"}'
 ```
+
+### Validation (Phase 9)
+
+```bash
+node scripts/validation-suite.js          # full test summary
+npm run realtime:pre-meeting              # pre-meeting E2E (mocks + BFF up)
+node scripts/load-baseline.js             # load p50/p99 (BFF up)
+```
+
+See [`docs/PLATFORM_VALIDATION_REPORT.md`](docs/PLATFORM_VALIDATION_REPORT.md).
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):
 

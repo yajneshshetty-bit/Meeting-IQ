@@ -4,7 +4,8 @@
 > **Audience:** Zambyl platform team — inputs for v1.1 roadmap.  
 > **Rule:** Do **not** patch the kernel. Log the gap here instead.
 
-**Platform baseline:** Zambyl v1.0.1 (kernel frozen)
+**Platform baseline:** Zambyl v1.0.1 (kernel frozen)  
+**Validation date:** 2026-08-01 (Phase 9)
 
 ---
 
@@ -25,7 +26,7 @@ Every entry **must** contain all fields below. Incomplete entries are rejected.
 
 ## Gap Entries
 
-_No gaps logged yet. An empty log at Phase 9 completion indicates full platform sufficiency._
+_No gaps logged. Phase 9 validation confirms all Phase 1 PRD capabilities were implemented via extension points (Connectors, Domain, Experience, Search, Outbox/Projections, BFF application layer). See [PLATFORM_VALIDATION_REPORT.md](./PLATFORM_VALIDATION_REPORT.md) § Observations for documented workarounds that are not platform failures._
 
 ---
 
@@ -48,7 +49,7 @@ _No gaps logged yet. An empty log at Phase 9 completion indicates full platform 
 
 ---
 
-## Gap Summary (update at Phase 9)
+## Gap Summary (Phase 9)
 
 | Priority | Count |
 |----------|-------|
@@ -57,6 +58,8 @@ _No gaps logged yet. An empty log at Phase 9 completion indicates full platform 
 | P2 | 0 |
 | P3 | 0 |
 | **Total** | **0** |
+
+**Validation outcome:** Platform sufficiency confirmed. No kernel modifications required.
 
 ---
 
