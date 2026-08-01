@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { bffFetch } from '../api/client.js';
 import { useUser } from '../context/UserContext.jsx';
-import { FreshnessBadge } from './FreshnessBadge.jsx';
+import { AiResultPanel, useAiExperience } from './AiResultPanel.jsx';
 
 export function ResearchBanner() {
   const { userId } = useUser();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState(null);
-  const [freshness, setFreshness] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const ai = useAiExperience('company-research');
 
   async function search() {
     const res = await bffFetch(`/api/search/accounts?q=${encodeURIComponent(query)}`, { userId });
-    setResults(res.data);
-    setFreshness(res.freshness);
+    setAccounts(res.data?.accounts || []);
+  }
+
+  async function research(accountId) {
+    await ai.run({ account_id: accountId });
   }
 
   return (
@@ -34,16 +37,21 @@ export function ResearchBanner() {
               />
               <button type="button" onClick={search}>Search</button>
             </div>
-            <FreshnessBadge freshness={freshness} />
             <ul className="account-results">
-              {(results?.accounts || []).map((a) => (
+              {accounts.map((a) => (
                 <li key={a.account_id}>
                   <strong>{a.name}</strong>
                   <span>Tier: {a.tier} · Health: {a.health_score}</span>
+                  <button type="button" onClick={() => research(a.account_id)}>Run AI research</button>
                 </li>
               ))}
             </ul>
-            <p className="muted note">AI synthesis via Experience Package ships in Phase 7.</p>
+            <AiResultPanel
+              title="AI Research"
+              result={ai.result}
+              loading={ai.loading}
+              error={ai.error}
+            />
             <button type="button" className="btn-secondary" onClick={() => setOpen(false)}>Close</button>
           </div>
         </div>

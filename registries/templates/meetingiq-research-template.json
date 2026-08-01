@@ -1,20 +1,12 @@
 {
   "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Produce company research as JSON with keys: summary (object with headline, overview, strategic_priorities, risks), citations (array), provenance (object).",
+    "user": "Research the account in context for a sales AE. Context:\n{{context}}"
+  },
   "fields": {
     "account": { "source": "node.account.entity" },
-    "contacts": { "source": "node.contacts.records" },
-    "recent_activity": { "source": "node.activity.records" },
-    "summary": {
-      "static": {
-        "headline": "Company research summary",
-        "format": "structured_brief"
-      }
-    },
-    "provenance": {
-      "static": { "template": "meetingiq-research-template", "experience": "meetingiq.company-research" }
-    }
+    "provenance": { "static": { "template": "meetingiq-research-template", "experience": "meetingiq.company-research" } }
   },
-  "output_schema": {
-    "required": ["account", "summary", "provenance"]
-  }
+  "output_schema": { "required": ["summary", "provenance"] }
 }

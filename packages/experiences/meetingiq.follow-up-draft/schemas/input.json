@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "meeting_id"
+  ],
+  "properties": {
+    "meeting_id": {
+      "type": "string"
+    },
+    "tone": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

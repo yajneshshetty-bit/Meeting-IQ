@@ -13,6 +13,7 @@ import { registerSupportRoutes } from './routes/support.js';
 import { registerWidgetRoutes } from './routes/widgets.js';
 import { registerSearchRoutes } from './routes/search.js';
 import { registerNotificationRoutes } from './routes/notifications.js';
+import { registerAiRoutes } from './routes/ai.js';
 
 export async function buildApp() {
   const app = Fastify({ logger: true });
@@ -27,7 +28,7 @@ export async function buildApp() {
   app.get('/health', async () => ({
     status: 'ok',
     service: 'meetingiq-bff',
-    phase: '6-ui-backend',
+    phase: '7-ai-experiences',
   }));
 
   app.get('/api/me', async (req) => ({
@@ -82,6 +83,7 @@ export async function buildApp() {
   await registerWidgetRoutes(app);
   await registerSearchRoutes(app);
   await registerNotificationRoutes(app);
+  await registerAiRoutes(app);
 
   return app;
 }

@@ -1,0 +1,11 @@
+{
+  "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Write an executive pipeline summary as JSON with keys: summary (object with headline, pipeline_health, top_risks, recommendations), citations (array), provenance (object).",
+    "user": "Summarize executive pipeline for quarter in input. Context:\n{{context}}"
+  },
+  "fields": {
+    "provenance": { "static": { "template": "meetingiq-executive-summary-template", "experience": "meetingiq.executive-summary" } }
+  },
+  "output_schema": { "required": ["summary", "provenance"] }
+}

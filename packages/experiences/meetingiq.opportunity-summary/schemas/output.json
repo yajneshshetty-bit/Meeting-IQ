@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": [
+    "summary",
+    "provenance"
+  ],
+  "properties": {
+    "summary": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "citations": {
+      "type": "array"
+    }
+  }
+}

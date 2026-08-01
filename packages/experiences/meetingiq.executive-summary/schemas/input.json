@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "quarter"
+  ],
+  "properties": {
+    "quarter": {
+      "type": "string"
+    },
+    "pipeline": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

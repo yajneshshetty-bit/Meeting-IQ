@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": [
+    "meeting_id"
+  ],
+  "properties": {
+    "meeting_id": {
+      "type": "string"
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "opportunity_id": {
+      "type": "string"
+    },
+    "brief_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

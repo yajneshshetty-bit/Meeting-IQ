@@ -1,0 +1,12 @@
+{
+  "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Draft a follow-up email as JSON with keys: summary (object with subject, body, tone), citations (array), provenance (object).",
+    "user": "Draft a professional follow-up email after the meeting. Use input.tone if set. Context:\n{{context}}"
+  },
+  "fields": {
+    "meeting": { "source": "node.meeting.entity" },
+    "provenance": { "static": { "template": "meetingiq-followup-template", "experience": "meetingiq.follow-up-draft" } }
+  },
+  "output_schema": { "required": ["summary", "provenance"] }
+}

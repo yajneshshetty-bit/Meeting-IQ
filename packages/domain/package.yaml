@@ -71,3 +71,9 @@ templates:
   - meetingiq-voc-template
   - meetingiq-risk-template
   - meetingiq-forecast-template
+  - meetingiq-executive-summary-template
+  - meetingiq-opportunity-summary-template
+  - meetingiq-next-actions-template
+  - meetingiq-followup-template
+  - meetingiq-qbr-template
+  - meetingiq-meeting-quality-template

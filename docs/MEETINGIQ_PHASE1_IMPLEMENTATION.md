@@ -573,9 +573,9 @@ Each phase has a dedicated execution prompt in [`phases/`](./phases/).
 
 **Exit criteria:**
 
-- [ ] All AI features execute through Zambyl experiences
-- [ ] Real LLM responses (not hardcoded)
-- [ ] Citations and lineage where applicable
+- [x] All AI features execute through Zambyl experiences
+- [x] Real LLM responses (not hardcoded)
+- [x] Citations and lineage where applicable
 
 **Prompt:** [`phases/PHASE_07_AI_EXPERIENCES.md`](./phases/PHASE_07_AI_EXPERIENCES.md)
 

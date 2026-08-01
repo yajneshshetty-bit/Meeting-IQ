@@ -30,10 +30,10 @@ Wire BFF to invoke `POST /v1/experiences:execute` for each.
 
 ## Exit Criteria
 
-- [ ] All AI features return real LLM output
-- [ ] All execute through Zambyl (not direct UI → LLM)
-- [ ] Citations/lineage where applicable
-- [ ] [`../PLATFORM_USAGE_REPORT.md`](../PLATFORM_USAGE_REPORT.md) updated
+- [x] All AI features return real LLM output
+- [x] All execute through Zambyl (not direct UI → LLM)
+- [x] Citations/lineage where applicable
+- [x] [`../PLATFORM_USAGE_REPORT.md`](../PLATFORM_USAGE_REPORT.md) updated
 
 ## Do Not
 

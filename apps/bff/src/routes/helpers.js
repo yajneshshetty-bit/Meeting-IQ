@@ -17,5 +17,8 @@ export function sendServiceError(err, reply) {
   if (err.statusCode === 404) {
     return reply.status(404).send({ error: { code: 'NOT_FOUND', message: err.message } });
   }
+  if (err.statusCode && err.statusCode >= 400 && err.statusCode < 500) {
+    return reply.status(err.statusCode).send({ error: { code: err.code || 'REQUEST_FAILED', message: err.message } });
+  }
   throw err;
 }

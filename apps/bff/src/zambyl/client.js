@@ -75,6 +75,19 @@ export class ZambylClient {
       body: { profile, query, limit },
     });
   }
+
+  async executeExperience(userContext, { experience_id, input = {}, channel = 'stable' } = {}) {
+    return this.request('/v1/experiences:execute', {
+      method: 'POST',
+      userContext,
+      body: {
+        experience_id,
+        channel,
+        input,
+        response_mode: { mode: 'sync_or_operation', allow_partial: true },
+      },
+    });
+  }
 }
 
 export const zambylClient = new ZambylClient();

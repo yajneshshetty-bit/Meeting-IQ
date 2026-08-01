@@ -263,6 +263,13 @@ button, input, select { font: inherit; }
 .ticket-list { list-style: none; padding: 0; }
 .ticket-list li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
+.ai-result-panel { margin-top: 1rem; padding: 1rem; background: #f9fafb; border-radius: 8px; border: 1px solid var(--border); }
+.ai-result-header { display: flex; justify-content: space-between; align-items: center; }
+.ai-output { white-space: pre-wrap; font-size: 0.85rem; max-height: 320px; overflow: auto; background: #fff; padding: 0.75rem; border-radius: 6px; }
+.citations { font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem; }
+.account-results button { margin-left: 0.5rem; }
+.exec-kpi .btn-ghost { margin-top: 0.35rem; font-size: 0.75rem; }
+
 @media (max-width: 960px) {
   .kpi-strip { grid-template-columns: repeat(2, 1fr); }
   .two-col { grid-template-columns: 1fr; }

@@ -1,21 +1,12 @@
 {
   "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Produce a pre-meeting brief as JSON with keys: summary (object with headline, sections array, key_talking_points), citations (array of {source, entity_id}), provenance (object).",
+    "user": "Create a pre-meeting brief for the meeting in context. Include sections requested in input.brief_sections. Context:\n{{context}}"
+  },
   "fields": {
     "meeting": { "source": "node.meeting.entity" },
-    "account": { "source": "node.account.entity" },
-    "opportunity": { "source": "node.opportunity.entity" },
-    "sections": {
-      "transform": "map_sections",
-      "from": "input.brief_sections",
-      "label_field": "section",
-      "content_template": "{{label}} context for {{meeting.title}} with {{account.name}}.",
-      "with": { "meeting": "node.meeting.entity", "account": "node.account.entity" }
-    },
-    "provenance": {
-      "static": { "template": "meetingiq-brief-template", "experience": "meetingiq.pre-meeting-brief" }
-    }
+    "provenance": { "static": { "template": "meetingiq-brief-template", "experience": "meetingiq.pre-meeting-brief" } }
   },
-  "output_schema": {
-    "required": ["meeting", "sections", "provenance"]
-  }
+  "output_schema": { "required": ["summary", "provenance"] }
 }

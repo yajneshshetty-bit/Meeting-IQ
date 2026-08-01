@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": [
+    "quarter"
+  ],
+  "properties": {
+    "quarter": {
+      "type": "string"
+    },
+    "forecast": {
+      "type": "object"
+    },
+    "opportunities": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

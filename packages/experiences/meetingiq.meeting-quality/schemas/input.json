@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": [
+    "meeting_id"
+  ],
+  "properties": {
+    "meeting_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

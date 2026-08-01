@@ -22,7 +22,7 @@ test('domain package manifest defines ontology and profiles', () => {
   assert.equal(manifest.profiles.search.length, 5);
   assert.equal(manifest.profiles.analytics.length, 3);
   assert.equal(manifest.policy.bundles.length, 6);
-  assert.equal(manifest.templates.length, 5);
+  assert.equal(manifest.templates.length, 11);
 });
 
 test('data profiles cover meetings, opportunities, accounts, communications', () => {
@@ -55,11 +55,12 @@ test('policy bundles align with BFF role entitlements', () => {
 test('templates define output schemas for Phase 7 experiences', () => {
   const dir = path.join(repoRoot, 'registries/templates');
   const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
-  assert.equal(files.length, 5);
+  assert.equal(files.length, 11);
   for (const file of files) {
     const spec = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
     assert.ok(spec.output_schema?.required?.length > 0);
     assert.equal(spec.template_kind, 'output');
+    assert.ok(spec.llm?.system, `${file} should define llm.system for Phase 7`);
   }
 });
 

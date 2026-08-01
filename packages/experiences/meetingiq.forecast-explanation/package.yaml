@@ -1,0 +1,33 @@
+metadata:
+  id: meetingiq.forecast-explanation
+  version: 1.0.0
+  owner: meetingiq-team
+  compatibility:
+    platformApi: "^1"
+schemas:
+  input: schemas/input.json
+  output: schemas/output.json
+policy:
+  purpose: meetingiq_ai
+  entitlements:
+    - meetingiq.read
+    - meetingiq.execute
+  redactionProfile: default
+dag:
+  - id: analytics
+    use: analytics.query@1
+    with:
+      profile: meetingiq.forecast-adjustment-v1
+  - id: explain
+    use: ai.generate@1
+    after: [analytics]
+    with:
+      template: meetingiq-forecast-template
+      modelClass: meetingiq-llm-standard
+freshness:
+  defaultMaxAge: PT15M
+  onStale: refresh
+partialResults:
+  allowed: true
+budgets:
+  deadline: PT60S

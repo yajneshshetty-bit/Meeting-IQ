@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Layout } from '../components/Layout.jsx';
 import { FreshnessBadge } from '../components/FreshnessBadge.jsx';
-import { AccountGroup, VocModal } from '../components/AccountGroup.jsx';
+import { AccountGroup, VocModal, QbrModal } from '../components/AccountGroup.jsx';
+import { AiResultPanel, useAiExperience } from '../components/AiResultPanel.jsx';
 import { formatCurrency, ACCOUNT_NAMES } from '../api/client.js';
 import { useBff } from '../hooks/useBff.js';
 import { useUser } from '../context/UserContext.jsx';
@@ -14,6 +15,7 @@ export function ExecutiveViewPage() {
   const [search, setSearch] = useState('');
   const [vocAccount, setVocAccount] = useState(null);
   const [qbrDeal, setQbrDeal] = useState(null);
+  const forecastAi = useAiExperience('forecast-explanation');
 
   const pipeline = useBff('/api/executive/pipeline', { skip: !canExecutive });
   const forecast = useBff('/api/executive/forecast', { skip: !canExecutive });
@@ -60,12 +62,22 @@ export function ExecutiveViewPage() {
         <div className="exec-kpi ai">
           <span>✨ AI-adjusted</span>
           <strong>{formatCurrency(forecast.data?.ai_adjusted_amount || pipeline.data?.ai_adjusted_pipeline || 0)}</strong>
+          <button type="button" className="btn-ghost" onClick={() => forecastAi.run({ quarter: 'Q3-2026' })}>Explain</button>
         </div>
         <div className="exec-kpi risk">
           <span>✨ Rising-risk</span>
           <strong>{rising.data?.count ?? 0}</strong>
         </div>
       </div>
+
+      {(forecastAi.result || forecastAi.loading || forecastAi.error) && (
+        <AiResultPanel
+          title="Forecast explanation"
+          result={forecastAi.result}
+          loading={forecastAi.loading}
+          error={forecastAi.error}
+        />
+      )}
 
       <div className="exec-toolbar">
         <div className="segmented">
@@ -110,14 +122,11 @@ export function ExecutiveViewPage() {
         />
       )}
       {qbrDeal && (
-        <div className="modal-overlay" onClick={() => setQbrDeal(null)} role="presentation">
-          <div className="voc-modal" onClick={(e) => e.stopPropagation()} role="dialog">
-            <h2>QBR — {qbrDeal.name}</h2>
-            <p>Stage: {qbrDeal.stage} · {formatCurrency(qbrDeal.amount)}</p>
-            <p className="muted note">QBR narrative via Experience Package ships in Phase 7.</p>
-            <button type="button" onClick={() => setQbrDeal(null)}>Close</button>
-          </div>
-        </div>
+        <QbrModal
+          deal={qbrDeal}
+          accountId={qbrDeal.account_id}
+          onClose={() => setQbrDeal(null)}
+        />
       )}
     </Layout>
   );

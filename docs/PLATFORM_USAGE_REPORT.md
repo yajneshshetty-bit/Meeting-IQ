@@ -65,6 +65,11 @@ When implementing a feature:
 | Command Center UI | BFF read models | `/api/command-center/*` | No | `CommandCenter.jsx` | command-center.test.js |
 | Executive View UI | BFF rollups | `/api/executive/*` | No | `ExecutiveView.jsx` | executive.test.js |
 | Global search UI | BFF search proxy | `/api/search` | No | `SearchModal.jsx` | search-notifications.test.js |
+| AI company research | Experience Package + OpenAI | `POST /v1/experiences:execute` | No | `POST /api/ai/company-research` | ai.test.js |
+| AI voice of customer | Experience Package | `meetingiq.voice-of-customer` | No | `POST /api/ai/voice-of-customer` | ai.test.js |
+| AI QBR narrative | Experience Package | `meetingiq.qbr-narrative` | No | `POST /api/ai/qbr-narrative` | ai.test.js |
+| AI forecast explanation | Experience Package | `meetingiq.forecast-explanation` | No | `POST /api/ai/forecast-explanation` | ai.test.js |
+| Experience Packages (11) | Signed YAML DAGs | `packages/experiences/` | No | `scripts/register-experiences.js` | experiences.test.js |
 | Notification queue UI | BFF notifications | `/api/notifications` | No | `NotificationPanel.jsx` | search-notifications.test.js |
 | Role-based scoping | BFF hierarchy enforcement | Policy + entitlements | No | `services/scope.js` | scope.test.js |
 | Freshness indicators | BFF read model metadata | `withFreshness()` | No | all BFF routes | command-center.test.js |
@@ -95,8 +100,8 @@ When implementing a feature:
 
 | Metric | Value |
 |--------|-------|
-| Total features implemented | 29 |
-| Features using Experience Packages | 0 |
+| Total features implemented | 35 |
+| Features using Experience Packages | 11 |
 | Features using Search | 4 |
 | Features using Connectors | 9 |
 | Features using Actions | 0 |
@@ -111,8 +116,7 @@ When implementing a feature:
 
 Check when first used:
 
-- [x] Domain Package
-- [ ] Experience Package
+- [x] Experience Package
 - [ ] Workflow Package
 - [ ] Trigger Package
 - [x] Connector Plugin
@@ -122,7 +126,7 @@ Check when first used:
 - [x] Template
 - [x] Policy Bundle
 - [x] Registry Bindings
-- [ ] `POST /v1/experiences:execute`
+- [x] `POST /v1/experiences:execute`
 - [x] `POST /v1/search:query`
 - [ ] `POST /v1/conversations`
 - [ ] `POST /v1/actions`

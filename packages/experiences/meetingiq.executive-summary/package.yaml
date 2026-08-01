@@ -1,0 +1,28 @@
+metadata:
+  id: meetingiq.executive-summary
+  version: 1.0.0
+  owner: meetingiq-team
+  compatibility:
+    platformApi: "^1"
+schemas:
+  input: schemas/input.json
+  output: schemas/output.json
+policy:
+  purpose: meetingiq_ai
+  entitlements:
+    - meetingiq.read
+    - meetingiq.execute
+  redactionProfile: default
+dag:
+  - id: summary
+    use: ai.generate@1
+    with:
+      template: meetingiq-executive-summary-template
+      modelClass: meetingiq-llm-standard
+freshness:
+  defaultMaxAge: PT15M
+  onStale: refresh
+partialResults:
+  allowed: true
+budgets:
+  deadline: PT60S

@@ -44,4 +44,19 @@ Maps Phase 1 PRD screenshot capabilities to UI components, BFF routes, and tests
 | Deal row + progress bar | `DealRow` | pipeline opportunity DTO | manual |
 | Stage tags | `StageBadge` | canonical `stage` | manual |
 | Voice of customer | `VocModal` | `GET /api/search/voc` | manual |
-| QBR button | QBR modal | deal context (Phase 7 AI) | manual |
+| QBR button | QBR modal | `POST /api/ai/qbr-narrative` | ai.test.js |
+
+## Phase 7 AI (all via BFF → Zambyl Execute)
+
+| PRD Capability | BFF Route | Experience ID |
+|----------------|-----------|---------------|
+| Pre-meeting brief | `POST /api/ai/pre-meeting-brief` | `meetingiq.pre-meeting-brief` |
+| Company research | `POST /api/ai/company-research` | `meetingiq.company-research` |
+| Voice of customer | `POST /api/ai/voice-of-customer` | `meetingiq.voice-of-customer` |
+| Executive summary | `POST /api/ai/executive-summary` | `meetingiq.executive-summary` |
+| Opportunity summary | `POST /api/ai/opportunity-summary` | `meetingiq.opportunity-summary` |
+| Risk analysis | `POST /api/ai/risk-analysis` | `meetingiq.risk-analysis` |
+| Next-best actions | `POST /api/ai/next-best-actions` | `meetingiq.next-best-actions` |
+| Follow-up draft | `POST /api/ai/follow-up-draft` | `meetingiq.follow-up-draft` |
+| Forecast explanation | `POST /api/ai/forecast-explanation` | `meetingiq.forecast-explanation` |
+| Meeting quality | `POST /api/ai/meeting-quality` | `meetingiq.meeting-quality` |

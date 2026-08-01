@@ -1,0 +1,12 @@
+{
+  "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Write a QBR narrative as JSON with keys: summary (object with headline, business_review, wins, challenges, forward_plan), citations (array), provenance (object).",
+    "user": "Prepare a QBR narrative for the account. Context:\n{{context}}"
+  },
+  "fields": {
+    "account": { "source": "node.account.entity" },
+    "provenance": { "static": { "template": "meetingiq-qbr-template", "experience": "meetingiq.qbr-narrative" } }
+  },
+  "output_schema": { "required": ["summary", "provenance"] }
+}

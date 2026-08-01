@@ -1,0 +1,12 @@
+{
+  "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Recommend next-best actions as JSON with keys: summary (object with actions array of {title, priority, rationale}), citations (array), provenance (object).",
+    "user": "Recommend next-best actions for the opportunity. Use input.tasks if present. Context:\n{{context}}"
+  },
+  "fields": {
+    "opportunity": { "source": "node.opportunity.entity" },
+    "provenance": { "static": { "template": "meetingiq-next-actions-template", "experience": "meetingiq.next-best-actions" } }
+  },
+  "output_schema": { "required": ["summary", "provenance"] }
+}

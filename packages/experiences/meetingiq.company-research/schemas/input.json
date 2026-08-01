@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": [
+    "account_id"
+  ],
+  "properties": {
+    "account_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

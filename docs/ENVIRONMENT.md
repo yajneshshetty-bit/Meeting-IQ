@@ -1,6 +1,6 @@
 # Environment Configuration
 
-**Phase:** 0A complete → 0B complete → Phase 1 complete → Phase 2 complete → Phase 3 complete → Phase 4 complete → Phase 5 complete → **Phase 6 complete**
+**Phase:** 0A complete → … → Phase 6 complete → **Phase 7 complete**
 
 ---
 
@@ -68,15 +68,29 @@ x-entitlements: meetingiq.read,<role-specific entitlements>
 
 Operator provides real LLM credentials. **Never commit keys.**
 
-| Variable | Purpose | Phase |
+Configure on the **Zambyl gateway process** (not MeetingIQ BFF):
+
+```bash
+# In Zambyl zambyl-core/.env (or gateway environment)
+OPENAI_API_KEY=sk-...
+LLM_MODEL=gpt-4o-mini
+LLM_BASE_URL=https://api.openai.com/v1   # optional
+```
+
+Then register MeetingIQ experiences:
+
+```bash
+cd /home/hp/Desktop/Meeting-IQ
+npm run experiences:register
+```
+
+| Variable | Purpose | Where |
 |----------|---------|-------|
-| `OPENAI_API_KEY` | Primary LLM provider (placeholder name — confirm provider in Phase 7) | 7 |
-| `LLM_MODEL` | Model identifier (e.g. `gpt-4o`) | 7 |
-| `LLM_BASE_URL` | Optional custom endpoint | 7 |
+| `OPENAI_API_KEY` | Primary LLM provider | Zambyl gateway env |
+| `LLM_MODEL` | Model identifier (e.g. `gpt-4o-mini`) | Zambyl gateway env |
+| `LLM_BASE_URL` | Optional custom endpoint | Zambyl gateway env |
 
-MeetingIQ BFF does not call LLM directly. All AI flows through `POST /v1/experiences:execute`.
-
-Configure model provider via Zambyl registry binding (`model_catalog` / capability provider).
+MeetingIQ BFF does not call LLM directly. All AI flows through `POST /v1/experiences:execute` → `meetingiq-llm-standard` model class → OpenAI provider registered from `packages/model-provider/openai.js`.
 
 ---
 

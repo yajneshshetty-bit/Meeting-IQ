@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "account_id"
+  ],
+  "properties": {
+    "account_id": {
+      "type": "string"
+    },
+    "communications": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

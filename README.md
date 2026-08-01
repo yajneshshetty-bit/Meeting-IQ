@@ -14,7 +14,8 @@
 | 4 Domain Packages | ✅ |
 | 5 BFF Product API | ✅ |
 | 6 UI | ✅ |
-| 7 AI Experiences | 🔜 Next |
+| 7 AI Experiences | ✅ |
+| 8 Real-time | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -82,6 +83,15 @@ npm run dev:web                         # UI :5173 (terminal 2)
 ```
 
 Open http://localhost:5173 — use role switcher (AE / Manager / SE / Leader) to see scoped data.
+
+### AI Experiences (Phase 7)
+
+```bash
+# Configure OPENAI_API_KEY on Zambyl gateway, then:
+npm run experiences:register
+curl -X POST -H 'x-meetingiq-user-id: user_alex' -H 'content-type: application/json' \
+  http://localhost:3001/api/ai/company-research -d '{"account_id":"acct_acme"}'
+```
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):
 

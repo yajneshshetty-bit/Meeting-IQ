@@ -1,0 +1,33 @@
+metadata:
+  id: meetingiq.voice-of-customer
+  version: 1.0.0
+  owner: meetingiq-team
+  compatibility:
+    platformApi: "^1"
+schemas:
+  input: schemas/input.json
+  output: schemas/output.json
+policy:
+  purpose: meetingiq_ai
+  entitlements:
+    - meetingiq.read
+    - meetingiq.execute
+  redactionProfile: default
+dag:
+  - id: account
+    use: knowledge.get@1
+    with:
+      profile: meetingiq.account-profile
+  - id: voc
+    use: ai.generate@1
+    after: [account]
+    with:
+      template: meetingiq-voc-template
+      modelClass: meetingiq-llm-standard
+freshness:
+  defaultMaxAge: PT15M
+  onStale: refresh
+partialResults:
+  allowed: true
+budgets:
+  deadline: PT60S

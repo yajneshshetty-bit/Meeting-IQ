@@ -1,0 +1,12 @@
+{
+  "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Assess meeting quality as JSON with keys: summary (object with score 0-100, strengths, improvements, prep_checklist), citations (array), provenance (object).",
+    "user": "Assess meeting quality and preparation for the meeting in context. Context:\n{{context}}"
+  },
+  "fields": {
+    "meeting": { "source": "node.meeting.entity" },
+    "provenance": { "static": { "template": "meetingiq-meeting-quality-template", "experience": "meetingiq.meeting-quality" } }
+  },
+  "output_schema": { "required": ["summary", "provenance"] }
+}

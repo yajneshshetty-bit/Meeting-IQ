@@ -1,33 +1,37 @@
 import { useEffect, useState } from 'react';
-import { bffFetch } from '../api/client.js';
-import { useUser } from '../context/UserContext.jsx';
 import { ProgressBar, StageBadge } from './DealRow.jsx';
+import { AiResultPanel, useAiExperience } from './AiResultPanel.jsx';
 
 export function VocModal({ accountId, accountName, onClose }) {
-  const { userId } = useUser();
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const voc = useAiExperience('voice-of-customer');
 
   useEffect(() => {
-    bffFetch(`/api/search/voc?account_id=${encodeURIComponent(accountId)}`, { userId })
-      .then((res) => setItems(res.data?.communications || []))
-      .finally(() => setLoading(false));
-  }, [accountId, userId]);
+    if (accountId) voc.run({ account_id: accountId });
+  }, [accountId]);
 
   return (
     <div className="modal-overlay" onClick={onClose} role="presentation">
       <div className="voc-modal" onClick={(e) => e.stopPropagation()} role="dialog">
         <h2>Voice of customer — {accountName}</h2>
-        {loading && <p>Loading…</p>}
-        <ul>
-          {items.map((c) => (
-            <li key={c.entity_id}>
-              <strong>{c.title}</strong>
-              <p>{c.snippet}</p>
-            </li>
-          ))}
-          {!loading && items.length === 0 && <p className="muted">No communications found</p>}
-        </ul>
+        <AiResultPanel result={voc.result} loading={voc.loading} error={voc.error} />
+        <button type="button" onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
+}
+
+export function QbrModal({ deal, accountId, onClose }) {
+  const qbr = useAiExperience('qbr-narrative');
+
+  useEffect(() => {
+    if (accountId) qbr.run({ account_id: accountId, opportunity_id: deal?.opportunity_id });
+  }, [accountId, deal?.opportunity_id]);
+
+  return (
+    <div className="modal-overlay" onClick={onClose} role="presentation">
+      <div className="voc-modal" onClick={(e) => e.stopPropagation()} role="dialog">
+        <h2>QBR — {deal?.name}</h2>
+        <AiResultPanel result={qbr.result} loading={qbr.loading} error={qbr.error} />
         <button type="button" onClick={onClose}>Close</button>
       </div>
     </div>
@@ -55,7 +59,7 @@ export function AccountGroup({ account, onVoc, onQbr }) {
           <ProgressBar commit={opp.commit_amount || opp.amount * 0.75} amount={opp.amount} atRisk={opp.risk_level === 'at_risk'} />
           <div className="deal-actions">
             <button type="button" onClick={() => onVoc(account.account_id)}>Voice of customer →</button>
-            <button type="button" onClick={() => onQbr(opp)}>QBR</button>
+            <button type="button" onClick={() => onQbr({ ...opp, account_id: account.account_id })}>QBR</button>
           </div>
         </div>
       ))}

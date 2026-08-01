@@ -1,18 +1,12 @@
 {
   "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Synthesize voice-of-customer themes as JSON with keys: summary (object with themes array, sentiment, executive_quote), citations (array referencing communications), provenance (object).",
+    "user": "Synthesize VoC from account data and input.communications. Context:\n{{context}}"
+  },
   "fields": {
     "account": { "source": "node.account.entity" },
-    "communications": { "source": "node.communications.records" },
-    "themes": {
-      "transform": "extract_themes",
-      "from": "node.communications.records",
-      "field": "body"
-    },
-    "provenance": {
-      "static": { "template": "meetingiq-voc-template", "experience": "meetingiq.voice-of-customer" }
-    }
+    "provenance": { "static": { "template": "meetingiq-voc-template", "experience": "meetingiq.voice-of-customer" } }
   },
-  "output_schema": {
-    "required": ["account", "themes", "provenance"]
-  }
+  "output_schema": { "required": ["summary", "provenance"] }
 }

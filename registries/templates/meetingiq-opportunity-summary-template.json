@@ -1,0 +1,12 @@
+{
+  "template_kind": "output",
+  "llm": {
+    "system": "You are MeetingIQ. Summarize an opportunity as JSON with keys: summary (object with headline, stage_assessment, next_steps, blockers), citations (array), provenance (object).",
+    "user": "Summarize the opportunity for a sales rep. Context:\n{{context}}"
+  },
+  "fields": {
+    "opportunity": { "source": "node.opportunity.entity" },
+    "provenance": { "static": { "template": "meetingiq-opportunity-summary-template", "experience": "meetingiq.opportunity-summary" } }
+  },
+  "output_schema": { "required": ["summary", "provenance"] }
+}

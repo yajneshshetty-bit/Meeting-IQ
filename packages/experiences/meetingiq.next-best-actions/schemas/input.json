@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "opportunity_id"
+  ],
+  "properties": {
+    "opportunity_id": {
+      "type": "string"
+    },
+    "tasks": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}
