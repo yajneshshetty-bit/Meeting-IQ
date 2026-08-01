@@ -11,8 +11,10 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 | [ENTITY_LIFECYCLE.md](./ENTITY_LIFECYCLE.md) | Per-entity lifecycle — investigate here when updates fail |
 | [PLATFORM_USAGE_REPORT.md](./PLATFORM_USAGE_REPORT.md) | Every feature → which platform capability validated it |
 | [PLATFORM_GAP_LOG.md](./PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap input |
+| [REALTIME_CORRECTNESS_MATRIX.md](./REALTIME_CORRECTNESS_MATRIX.md) | Expected propagation path per source event |
 | [ZAMBYL_READINESS_AUDIT.md](./ZAMBYL_READINESS_AUDIT.md) | Phase 0A — platform readiness verdict (✅ READY) |
 | [ENVIRONMENT.md](./ENVIRONMENT.md) | Local dev topology, ports, env vars |
+| [Phase 0A Completion](./phases/PHASE_00A_COMPLETION.md) | Phase 0A exit criteria record |
 
 ## Execution Model
 
