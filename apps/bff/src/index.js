@@ -15,6 +15,7 @@ import { registerSearchRoutes } from './routes/search.js';
 import { registerNotificationRoutes } from './routes/notifications.js';
 import { registerAiRoutes } from './routes/ai.js';
 import { registerRealtimeRoutes } from './routes/realtime.js';
+import { registerObservabilityRoutes } from './routes/observability.js';
 import { startOutboxWatcher, closeWatcherPool } from './services/realtime/watcher.js';
 
 export async function buildApp() {
@@ -30,7 +31,7 @@ export async function buildApp() {
   app.get('/health', async () => ({
     status: 'ok',
     service: 'meetingiq-bff',
-    phase: '9-validation',
+    phase: '10-production-ready',
   }));
 
   app.get('/api/me', async (req) => ({
@@ -87,6 +88,7 @@ export async function buildApp() {
   await registerNotificationRoutes(app);
   await registerAiRoutes(app);
   await registerRealtimeRoutes(app);
+  await registerObservabilityRoutes(app);
 
   return app;
 }

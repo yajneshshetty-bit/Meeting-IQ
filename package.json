@@ -31,6 +31,8 @@
     "realtime:pre-meeting": "node scripts/pre-meeting-scenario.js",
     "validation:suite": "node scripts/validation-suite.js",
     "load:baseline": "node scripts/load-baseline.js",
+    "stack:up": "node scripts/stack-up.js",
+    "stack:down": "node scripts/stack-down.js",
     "lint": "npm run lint -w @meetingiq/bff"
   },
   "engines": {

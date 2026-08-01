@@ -15,7 +15,7 @@ test('GET /health does not require auth', async (t) => {
   const body = res.json();
   assert.equal(body.status, 'ok');
   assert.equal(body.service, 'meetingiq-bff');
-  assert.equal(body.phase, '9-validation');
+  assert.equal(body.phase, '10-production-ready');
 });
 
 test('GET /api/me resolves Alex with hierarchy and entitlements', async (t) => {

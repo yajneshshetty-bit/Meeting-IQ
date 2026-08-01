@@ -1,0 +1,204 @@
+# MeetingIQ full stack — Zambyl + mocks + BFF + UI
+#
+# Prerequisites:
+#   - Docker + Docker Compose
+#   - ZAMBYL_ROOT pointing at cloned Zambyl v1.0.1 repo (for gateway build)
+#
+# Usage:
+#   export ZAMBYL_ROOT=/path/to/Zambyl
+#   docker compose -f docker-compose.full.yml up -d --build
+#   npm run stack:register   # host-side registry + sync (after stack is up)
+
+x-mock-service: &mock-service
+  build:
+    context: .
+    dockerfile: mock-services/Dockerfile
+  restart: unless-stopped
+  networks: [meetingiq]
+
+services:
+  # --- Zambyl platform infra ---
+  zambyl-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: zambyl
+      POSTGRES_PASSWORD: zambyl
+      POSTGRES_DB: zambyl
+    ports:
+      - "5432:5432"
+    volumes:
+      - zambyl_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zambyl -d zambyl"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [meetingiq]
+
+  zambyl-redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks: [meetingiq]
+
+  zambyl-gateway:
+    build:
+      context: ${ZAMBYL_ROOT}
+      dockerfile: deploy/Dockerfile.zambyl-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://zambyl:zambyl@zambyl-postgres:5432/zambyl
+      GATEWAY_HOST: 0.0.0.0
+      GATEWAY_PORT: "8080"
+      TEST_HARNESS_API_KEY: test-harness-key
+      ZAMBYL_ADMIN_KEY: dev-admin-key
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+    depends_on:
+      zambyl-postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks: [meetingiq]
+
+  # --- MeetingIQ application ---
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: meetingiq
+      POSTGRES_PASSWORD: meetingiq
+      POSTGRES_DB: meetingiq
+    ports:
+      - "5434:5432"
+    volumes:
+      - meetingiq_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meetingiq -d meetingiq"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks: [meetingiq]
+
+  bff:
+    build:
+      context: .
+      dockerfile: apps/bff/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      MEETINGIQ_DATABASE_URL: postgres://meetingiq:meetingiq@postgres:5432/meetingiq
+      ZAMBYL_API_URL: http://zambyl-gateway:8080
+      ZAMBYL_DATABASE_URL: postgres://zambyl:zambyl@zambyl-postgres:5432/zambyl
+      ZAMBYL_API_KEY: test-harness-key
+      ZAMBYL_WORKLOAD_ID: meetingiq-bff
+      MEETINGIQ_CORS_ORIGINS: http://localhost:5173,http://localhost:8088
+      MEETINGIQ_REALTIME_WATCHER: "1"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      zambyl-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    networks: [meetingiq]
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "8088:80"
+    depends_on:
+      bff:
+        condition: service_healthy
+    networks: [meetingiq]
+
+  # --- Mock enterprise sources ---
+  mock-crm:
+    <<: *mock-service
+    command: node mock-services/crm/index.js
+    ports: ["4001:4001"]
+    environment: { PORT: "4001" }
+
+  mock-calendar:
+    <<: *mock-service
+    command: node mock-services/calendar/index.js
+    ports: ["4002:4002"]
+    environment: { PORT: "4002" }
+
+  mock-mail:
+    <<: *mock-service
+    command: node mock-services/mail/index.js
+    ports: ["4003:4003"]
+    environment: { PORT: "4003" }
+
+  mock-slack:
+    <<: *mock-service
+    command: node mock-services/slack/index.js
+    ports: ["4004:4004"]
+    environment: { PORT: "4004" }
+
+  mock-documents:
+    <<: *mock-service
+    command: node mock-services/documents/index.js
+    ports: ["4005:4005"]
+    environment: { PORT: "4005" }
+
+  mock-tasks:
+    <<: *mock-service
+    command: node mock-services/tasks/index.js
+    ports: ["4006:4006"]
+    environment: { PORT: "4006" }
+
+  mock-support:
+    <<: *mock-service
+    command: node mock-services/support/index.js
+    ports: ["4007:4007"]
+    environment: { PORT: "4007" }
+
+  mock-erp:
+    <<: *mock-service
+    command: node mock-services/erp/index.js
+    ports: ["4008:4008"]
+    environment: { PORT: "4008" }
+
+  mock-identity:
+    <<: *mock-service
+    command: node mock-services/identity/index.js
+    ports: ["4009:4009"]
+    environment: { PORT: "4009" }
+
+  mock-event-simulator:
+    <<: *mock-service
+    command: node mock-services/event-simulator/index.js
+    ports: ["4010:4010"]
+    depends_on: [mock-crm, mock-mail, mock-support, mock-slack, mock-tasks]
+    environment:
+      PORT: "4010"
+      MOCK_SIMULATOR_AUTO: "0"
+      MOCK_CRM_URL: http://mock-crm:4001
+      MOCK_MAIL_URL: http://mock-mail:4003
+      MOCK_SUPPORT_URL: http://mock-support:4007
+      MOCK_SLACK_URL: http://mock-slack:4004
+      MOCK_TASKS_URL: http://mock-tasks:4006
+
+networks:
+  meetingiq:
+    driver: bridge
+
+volumes:
+  meetingiq_pg_data:
+  zambyl_pg_data:

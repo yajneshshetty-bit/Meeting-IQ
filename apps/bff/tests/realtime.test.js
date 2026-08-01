@@ -88,3 +88,41 @@ test('GET /api/realtime/latency returns metrics array', async (t) => {
   assert.equal(res.statusCode, 200);
   assert.ok(Array.isArray(res.json().metrics));
 });
+
+test('GET /api/observability/summary returns stack metrics', async (t) => {
+  process.env.MEETINGIQ_REALTIME_WATCHER = '0';
+  const app = await buildApp();
+  t.after(async () => {
+    await app.close();
+    await closePool();
+    await closeWatcherPool();
+  });
+
+  const res = await app.inject({
+    method: 'GET',
+    url: '/api/observability/summary',
+    headers: { 'x-meetingiq-user-id': 'user_alex' },
+  });
+  assert.equal(res.statusCode, 200);
+  const body = res.json();
+  assert.equal(body.phase, '10-production-ready');
+  assert.ok(body.zambyl);
+  assert.ok(body.realtime);
+});
+
+test('GET /metrics returns prometheus text', async (t) => {
+  process.env.MEETINGIQ_REALTIME_WATCHER = '0';
+  const app = await buildApp();
+  t.after(async () => {
+    await app.close();
+    await closePool();
+    await closeWatcherPool();
+  });
+
+  const res = await app.inject({
+    method: 'GET',
+    url: '/metrics',
+  });
+  assert.equal(res.statusCode, 200);
+  assert.match(res.body, /meetingiq_sse_subscribers/);
+});

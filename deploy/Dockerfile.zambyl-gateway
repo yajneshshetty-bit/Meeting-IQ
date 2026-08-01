@@ -1,0 +1,21 @@
+# Zambyl gateway container — build context must be Zambyl repo root (ZAMBYL_ROOT).
+# Does not modify zambyl-core; copies and runs the frozen v1.0.1 gateway package.
+FROM node:20-alpine
+WORKDIR /zambyl
+
+COPY package.json package-lock.json* ./
+COPY zambyl-core ./zambyl-core
+COPY platform ./platform
+
+RUN npm install --omit=dev
+
+ENV NODE_ENV=production
+ENV GATEWAY_HOST=0.0.0.0
+ENV GATEWAY_PORT=8080
+ENV DATABASE_URL=postgres://zambyl:zambyl@zambyl-postgres:5432/zambyl
+ENV TEST_HARNESS_API_KEY=test-harness-key
+ENV ZAMBYL_ADMIN_KEY=dev-admin-key
+
+WORKDIR /zambyl/zambyl-core/packages/gateway
+EXPOSE 8080
+CMD ["node", "index.js"]

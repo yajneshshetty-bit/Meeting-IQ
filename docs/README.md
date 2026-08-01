@@ -18,6 +18,8 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 | [REALTIME_CORRECTNESS_MATRIX.md](./REALTIME_CORRECTNESS_MATRIX.md) | Expected propagation path per source event |
 | [ZAMBYL_READINESS_AUDIT.md](./ZAMBYL_READINESS_AUDIT.md) | Phase 0A — platform readiness verdict (✅ READY) |
 | [ENVIRONMENT.md](./ENVIRONMENT.md) | Local dev topology, ports, env vars |
+| [SECURITY_REVIEW.md](./SECURITY_REVIEW.md) | Phase 10 security review for operators |
+| [runbooks/](./runbooks/) | Bootstrap, sync, failure recovery |
 | [Phase 0A Completion](./phases/PHASE_00A_COMPLETION.md) | Phase 0A exit criteria record |
 | [Phase 1 Completion](./phases/PHASE_01_COMPLETION.md) | Phase 1 exit criteria record |
 | [Phase 2 Completion](./phases/PHASE_02_COMPLETION.md) | Phase 2 mock enterprise exit criteria record |
@@ -43,10 +45,10 @@ Phase 6  → MeetingIQ UI ✅ Complete
 Phase 7  → AI Experiences ✅ Complete
 Phase 8  → Real-time Runtime ✅ Complete
 Phase 9  → Validation ✅ Complete
-Phase 10 → Production Readiness (next)
+Phase 10 → Production Readiness ✅ Complete
 ```
 
-## Overarching Success Criterion
+**Phase 1 complete.** See [`PLATFORM_VALIDATION_REPORT.md`](./PLATFORM_VALIDATION_REPORT.md) and [`phases/PHASE_10_COMPLETION.md`](./phases/PHASE_10_COMPLETION.md).
 
 > Success is not that MeetingIQ works. Success is that another team could build BankingIQ using the same extension model without kernel changes.
 

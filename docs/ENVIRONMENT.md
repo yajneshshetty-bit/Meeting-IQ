@@ -1,6 +1,6 @@
 # Environment Configuration
 
-**Phase:** 0A complete → … → Phase 6 complete → **Phase 7 complete**
+**Phase:** Phase 10 complete — **Production Ready**
 
 ---
 
@@ -175,14 +175,29 @@ Domain package: `meetingiq@1.0.0` on `stable` channel. Role mapping: [`docs/ROLE
 
 ---
 
-## Docker Compose (planned — Phase 10)
+## Docker Compose — Full Stack (Phase 10)
 
-Full-stack `docker-compose.yml` will orchestrate:
+| File | Purpose |
+|------|---------|
+| `docker-compose.yml` | MeetingIQ Postgres + optional `mock` profile |
+| `docker-compose.full.yml` | Zambyl + mocks + BFF + UI (production-like) |
 
-- Zambyl Postgres + Gateway
-- Mock enterprise services
-- MeetingIQ BFF + UI + DB
-- Event simulator
+```bash
+export ZAMBYL_ROOT=/path/to/Zambyl    # v1.0.1 required for gateway build
+npm run stack:up                        # build, start, register, sync
+npm run stack:down
+```
+
+| Service | Port | Profile |
+|---------|------|---------|
+| MeetingIQ UI (nginx) | `8088` | full |
+| MeetingIQ BFF | `3001` | full |
+| MeetingIQ Postgres | `5434` | default / full |
+| Zambyl Gateway | `8080` | full |
+| Zambyl Postgres | `5432` | full |
+| Mock services | `4001`–`4010` | mock / full |
+
+Runbooks: [`docs/runbooks/`](./runbooks/)
 
 ---
 

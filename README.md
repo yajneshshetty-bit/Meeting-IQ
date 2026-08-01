@@ -2,122 +2,92 @@
 
 **First production application on the [Zambyl Platform](https://github.com/yajneshshetty-bit/Zambyl) (v1.0.1).**
 
+Phase 1 is **complete** — validated platform extension model with zero kernel modifications.
+
 ## Status
 
 | Phase | Status |
 |-------|--------|
-| 0A Zambyl Readiness | ✅ |
-| 0B Domain Modeling | ✅ |
-| 1 Foundation (BFF + identity) | ✅ |
-| 2 Mock Enterprise | ✅ |
-| 3 Connectors | ✅ |
-| 4 Domain Packages | ✅ |
-| 5 BFF Product API | ✅ |
-| 6 UI | ✅ |
-| 7 AI Experiences | ✅ |
-| 8 Real-time | ✅ |
-| 9 Validation | ✅ |
-| 10 Production Readiness | 🔜 Next |
+| 0A–9 | ✅ Complete |
+| 10 Production Readiness | ✅ |
 
-## Quick Start (Phase 1)
+## Quick Start (< 30 min)
 
-**Prerequisites:** Node.js ≥ 20, Docker, Zambyl v1.0.1 running (optional for connectivity test)
+**Prerequisites:** Node.js ≥ 20, Docker, [Zambyl v1.0.1](https://github.com/yajneshshetty-bit/Zambyl) cloned alongside Meeting-IQ
 
 ```bash
-# MeetingIQ
 git clone git@github.com:yajneshshetty-bit/Meeting-IQ.git
 cd Meeting-IQ
-docker compose up -d
-npm install
-npm run bootstrap
-npm test
-npm run dev
+
+# Clone Zambyl at v1.0.1 (sibling directory)
+git clone git@github.com:yajneshshetty-bit/Zambyl.git ../Zambyl
+cd ../Zambyl && git checkout v1.0.1 && cd ../Meeting-IQ
+
+export ZAMBYL_ROOT=$(pwd)/../Zambyl
+npm run stack:up
 ```
 
-BFF: http://localhost:3001
+| Service | URL |
+|---------|-----|
+| **UI** | http://localhost:8088 |
+| BFF | http://localhost:3001 |
+| Zambyl | http://localhost:8080 |
+
+Use the role switcher in the UI (AE / Manager / Leader). Dev user: `user_alex`.
 
 ```bash
 curl http://localhost:3001/health
-curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/me
-curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/platform/zambyl
-```
-
-### Mock Enterprise (Phase 2)
-
-```bash
-npm run mock:test                 # 11 tests, no Docker required
-npm run mock:start                # ports 4001–4010 via Docker
-curl -H 'x-api-key: mock-enterprise-key' http://localhost:4001/v1/opportunities
-curl -X POST http://localhost:4010/v1/scenarios/pre_meeting/run
-```
-
-### Connectors (Phase 3)
-
-```bash
-npm run mock:start                      # mock sources :4001–4009
-npm run connectors:register             # register in Zambyl Postgres
-npm run connectors:bootstrap-sync         # ingest all mock data
-npm run connectors:test                   # 31 connector tests
-```
-
-### Domain Packages (Phase 4)
-
-```bash
-npm run domain:register                 # register profiles, policies, templates, activate domain
-npm run domain:test                       # 7 tests
-```
-
-### BFF Product API (Phase 5)
-
-```bash
-npm run migrate                         # includes widget_configs table
-npm run dev                             # BFF :3001
 curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/command-center/overview
-curl -H 'x-meetingiq-user-id: user_leader_1' http://localhost:3001/api/executive/pipeline
-curl -H 'x-meetingiq-user-id: user_support' http://localhost:3001/api/support/diagnostics
+npm run validation:suite
 ```
 
-### Web UI (Phase 6)
+Tear down: `npm run stack:down`
+
+---
+
+## Local Development (without full Docker)
 
 ```bash
-npm run dev                             # BFF :3001 (terminal 1)
-npm run dev:web                         # UI :5173 (terminal 2)
+docker compose up -d              # MeetingIQ Postgres :5434
+npm install && npm run bootstrap
+npm run mock:start                # mock sources :4001–4010
+npm run dev                       # BFF :3001
+npm run dev:web                   # UI :5173
 ```
 
-Open http://localhost:5173 — use role switcher (AE / Manager / SE / Leader) to see scoped data.
-
-### AI Experiences (Phase 7)
+With Zambyl gateway on :8080:
 
 ```bash
-# Configure OPENAI_API_KEY on Zambyl gateway, then:
+npm run connectors:register && npm run domain:register
 npm run experiences:register
-curl -X POST -H 'x-meetingiq-user-id: user_alex' -H 'content-type: application/json' \
-  http://localhost:3001/api/ai/company-research -d '{"account_id":"acct_acme"}'
+npm run connectors:bootstrap-sync
 ```
 
-### Validation (Phase 9)
+---
 
-```bash
-node scripts/validation-suite.js          # full test summary
-npm run realtime:pre-meeting              # pre-meeting E2E (mocks + BFF up)
-node scripts/load-baseline.js             # load p50/p99 (BFF up)
-```
+## Key Commands
 
-See [`docs/PLATFORM_VALIDATION_REPORT.md`](docs/PLATFORM_VALIDATION_REPORT.md).
+| Command | Purpose |
+|---------|---------|
+| `npm run stack:up` | Full Docker stack + register + sync |
+| `npm run stack:down` | Stop full stack |
+| `npm run validation:suite` | All test suites |
+| `npm run realtime:pre-meeting` | Real-time acceptance scenario |
+| `npm run load:baseline` | BFF load p50/p99 (BFF must be up) |
 
-**Zambyl** (separate repo — start gateway on :8080 for full connectivity):
-
-```bash
-cd /path/to/Zambyl/zambyl-core
-docker compose up -d
-cd .. && npm run bootstrap && npm run dev -w @zambyl/gateway
-```
+---
 
 ## Documentation
 
-[`docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md`](docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md) — master specification
+| Document | Purpose |
+|----------|---------|
+| [`docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md`](docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md) | Master specification |
+| [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md) | Ports, env vars, topology |
+| [`docs/runbooks/BOOTSTRAP.md`](docs/runbooks/BOOTSTRAP.md) | Deploy runbook |
+| [`docs/SECURITY_REVIEW.md`](docs/SECURITY_REVIEW.md) | Security review for operators |
+| [`docs/PLATFORM_VALIDATION_REPORT.md`](docs/PLATFORM_VALIDATION_REPORT.md) | Platform validation conclusion |
 
-[`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md) — ports, env vars, topology
+---
 
 ## License
 
