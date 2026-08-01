@@ -60,13 +60,16 @@ When implementing a feature:
 | Meeting Cards | Canonical entities + Search | Search projection | No | _TBD_ | _TBD_ |
 | Notifications | BFF + Operations SSE | `GET /v1/operations/{id}/events` | No | _TBD_ | _TBD_ |
 | Approvals | Actions runtime | `POST /v1/actions` | No | _TBD_ | _TBD_ |
-| CRM Sync | Connector Plugin | `@zambyl/connectors` | No | _TBD_ | _TBD_ |
-| Calendar Sync | Connector Plugin | `@zambyl/connectors` | No | _TBD_ | _TBD_ |
-| Email Ingestion | Connector Plugin | `@zambyl/connectors` | No | _TBD_ | _TBD_ |
-| Role-based Access | Policy Bundle + BFF enforcement | Policy + entitlements | No | _TBD_ | _TBD_ |
-| AI Forecast Explanation | Experience Package + Template | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
-| QBR Narrative | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
-| Follow-up Draft | Experience Package + Conversations | Execute + Conversations | No | _TBD_ | _TBD_ |
+| CRM Sync | Connector Plugin | `@zambyl/connectors` | No | `connectors/crm/` | connector-plugins.test.js |
+| Calendar Sync | Connector Plugin | `@zambyl/connectors` | No | `connectors/calendar/` | connector-plugins.test.js |
+| Email Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/mail/` | connector-plugins.test.js |
+| Slack Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/slack/` | connector-plugins.test.js |
+| Document Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/documents/` | connector-plugins.test.js |
+| Task Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/tasks/` | connector-plugins.test.js |
+| Support Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/support/` | connector-plugins.test.js |
+| ERP Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/erp/` | connector-plugins.test.js |
+| Identity Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/identity/` | connector-plugins.test.js |
+| Search profiles | Registry bindings | `registries/search-profiles.json` | No | `scripts/register-connectors.js` | integration.test.js |
 | Connector Health | Operations poll | `GET /v1/operations/{id}` | No | _TBD_ | _TBD_ |
 | Freshness Indicators | Materialization metadata | BFF read model | No | _TBD_ | _TBD_ |
 
@@ -76,10 +79,10 @@ When implementing a feature:
 
 | Metric | Value |
 |--------|-------|
-| Total features implemented | 0 |
+| Total features implemented | 10 |
 | Features using Experience Packages | 0 |
-| Features using Search | 0 |
-| Features using Connectors | 0 |
+| Features using Search | 1 |
+| Features using Connectors | 9 |
 | Features using Actions | 0 |
 | Features using Domain Packages | 0 |
 | Features using Conversations | 0 |
@@ -96,21 +99,20 @@ Check when first used:
 - [ ] Experience Package
 - [ ] Workflow Package
 - [ ] Trigger Package
-- [ ] Connector Plugin
-- [ ] Search Profile
+- [x] Connector Plugin
+- [x] Search Profile
 - [ ] Data Profile
 - [ ] Analytics Profile
 - [ ] Template
 - [ ] Policy Bundle
-- [ ] Registry Bindings
+- [x] Registry Bindings
 - [ ] `POST /v1/experiences:execute`
 - [ ] `POST /v1/search:query`
 - [ ] `POST /v1/conversations`
 - [ ] `POST /v1/actions`
 - [ ] `GET /v1/operations/{id}`
 - [ ] Operations SSE
-- [ ] Materializations
-- [ ] Outbox / Projection pipeline
+- [x] Outbox / Projection pipeline
 
 ---
 

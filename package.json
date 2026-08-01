@@ -14,10 +14,14 @@
     "migrate": "node scripts/migrate.js",
     "seed": "node scripts/seed-dev-users.js",
     "bootstrap": "npm run migrate && npm run seed",
-    "test": "npm run test -w @meetingiq/bff && npm run mock:test",
+    "test": "npm run test -w @meetingiq/bff && npm run mock:test && npm run connectors:test",
     "mock:test": "node --test mock-services/tests/*.test.js",
     "mock:start": "docker compose --profile mock up -d",
     "mock:stop": "docker compose --profile mock down",
+    "connectors:register": "node scripts/register-connectors.js",
+    "connectors:sync": "node scripts/sync-connectors.js",
+    "connectors:bootstrap-sync": "node scripts/zambyl-bootstrap-sync.js",
+    "connectors:test": "node --test connectors/tests/connector-plugins.test.js connectors/tests/integration.test.js",
     "lint": "npm run lint -w @meetingiq/bff"
   },
   "engines": {

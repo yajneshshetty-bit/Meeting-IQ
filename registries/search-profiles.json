@@ -1,0 +1,37 @@
+[
+  {
+    "profile_id": "meetingiq.account-v1",
+    "corpus_id": "meetingiq-corpus-accounts",
+    "description": "MeetingIQ account and contact search",
+    "required_entitlements": ["meetingiq.read"],
+    "allowed_classifications": ["internal", "confidential-external"]
+  },
+  {
+    "profile_id": "meetingiq.pipeline-v1",
+    "corpus_id": "meetingiq-corpus-opportunities",
+    "description": "MeetingIQ opportunity and lead pipeline search",
+    "required_entitlements": ["meetingiq.read"],
+    "allowed_classifications": ["internal", "confidential-external"]
+  },
+  {
+    "profile_id": "meetingiq.agenda-v1",
+    "corpus_id": "meetingiq-corpus-meetings",
+    "description": "MeetingIQ weekly agenda and meeting search",
+    "required_entitlements": ["meetingiq.read"],
+    "allowed_classifications": ["internal"]
+  },
+  {
+    "profile_id": "meetingiq.voc-v1",
+    "corpus_id": "meetingiq-corpus-communications",
+    "description": "MeetingIQ voice-of-customer (email + slack)",
+    "required_entitlements": ["meetingiq.read"],
+    "allowed_classifications": ["internal", "confidential-external"]
+  },
+  {
+    "profile_id": "meetingiq.executive-pipeline-v1",
+    "corpus_id": "meetingiq-corpus-opportunities",
+    "description": "MeetingIQ executive pipeline and forecast search",
+    "required_entitlements": ["meetingiq.read", "meetingiq.executive.read"],
+    "allowed_classifications": ["internal", "confidential-external"]
+  }
+]

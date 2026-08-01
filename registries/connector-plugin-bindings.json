@@ -1,0 +1,101 @@
+[
+  {
+    "plugin_id": "meetingiq.crm",
+    "version": "1.0.0",
+    "module_path": "connectors/crm/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.crm",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "POLLING", "WEBHOOK"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "POLLING", "WEBHOOK"]
+  },
+  {
+    "plugin_id": "meetingiq.calendar",
+    "version": "1.0.0",
+    "module_path": "connectors/calendar/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.calendar",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "POLLING"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "POLLING"]
+  },
+  {
+    "plugin_id": "meetingiq.mail",
+    "version": "1.0.0",
+    "module_path": "connectors/mail/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.mail",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "WEBHOOK"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "WEBHOOK"]
+  },
+  {
+    "plugin_id": "meetingiq.slack",
+    "version": "1.0.0",
+    "module_path": "connectors/slack/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.slack",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "WEBHOOK"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "WEBHOOK"]
+  },
+  {
+    "plugin_id": "meetingiq.documents",
+    "version": "1.0.0",
+    "module_path": "connectors/documents/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.documents",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+  },
+  {
+    "plugin_id": "meetingiq.tasks",
+    "version": "1.0.0",
+    "module_path": "connectors/tasks/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.tasks",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+  },
+  {
+    "plugin_id": "meetingiq.support",
+    "version": "1.0.0",
+    "module_path": "connectors/support/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.support",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "WEBHOOK"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST", "WEBHOOK"]
+  },
+  {
+    "plugin_id": "meetingiq.erp",
+    "version": "1.0.0",
+    "module_path": "connectors/erp/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.erp",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+  },
+  {
+    "plugin_id": "meetingiq.identity",
+    "version": "1.0.0",
+    "module_path": "connectors/identity/plugin.js",
+    "manifest": {
+      "connector_id": "meetingiq.identity",
+      "version": "1.0.0",
+      "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+    },
+    "capabilities": ["BATCH_READ", "INCREMENTAL_READ", "REST"]
+  }
+]

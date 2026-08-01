@@ -1,0 +1,13 @@
+metadata:
+  id: meetingiq.support
+  version: 1.0.0
+  owner: meetingiq-team
+plugin:
+  type: rest
+  module_path: ./plugin.js
+sync:
+  modes: [batch, incremental, webhook]
+policy_scope:
+  default_classification: internal
+  entitlements: [meetingiq.read]
+  corpus_ids: [meetingiq-corpus-support]

@@ -1,6 +1,6 @@
 # Environment Configuration
 
-**Phase:** 0A complete → 0B complete → Phase 1 complete → **Phase 2 complete**
+**Phase:** 0A complete → 0B complete → Phase 1 complete → Phase 2 complete → **Phase 3 complete**
 
 ---
 
@@ -124,6 +124,29 @@ npm run mock:stop
 ```
 
 Seed data source: `mock-services/seed/enterprise-manifest.js`
+
+---
+
+## MeetingIQ Connectors (Phase 3)
+
+Connectors live in Meeting-IQ repo; registration writes to **Zambyl Postgres** (no kernel changes).
+
+| Script | Purpose |
+|--------|---------|
+| `npm run connectors:register` | Register 9 plugins + connections + search profiles |
+| `npm run connectors:bootstrap-sync` | `bootstrapPlatform` + batch sync all connections |
+| `npm run connectors:sync` | HTTP admin sync (requires gateway restart after register) |
+| `npm run connectors:test` | 31 unit/integration tests |
+
+**Zambyl env (connectors):**
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `ZAMBYL_DATABASE_URL` | `postgres://zambyl:zambyl@localhost:5432/zambyl` | Registry + ingestion DB |
+| `ZAMBYL_API_URL` | `http://localhost:8080` | Admin sync HTTP |
+| `ZAMBYL_ADMIN_KEY` | `dev-admin-key` | Admin sync auth |
+| `ZAMBYL_ROOT` | `/home/hp/Desktop/Zambyl` | For `bootstrap-sync` script |
+| `ZAMBYL_INTEGRATION` | — | Set `1` to run full ingestion integration test |
 
 ---
 

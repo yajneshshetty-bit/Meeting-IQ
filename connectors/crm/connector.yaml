@@ -1,0 +1,19 @@
+metadata:
+  id: meetingiq.crm
+  version: 1.0.0
+  owner: meetingiq-team
+plugin:
+  type: rest
+  module_path: ./plugin.js
+sync:
+  modes: [batch, incremental]
+  schedule: "*/15 * * * *"
+policy_scope:
+  default_classification: internal
+  entitlements: [meetingiq.read]
+  corpus_ids:
+    - meetingiq-corpus-accounts
+    - meetingiq-corpus-opportunities
+    - meetingiq-corpus-leads
+    - meetingiq-corpus-products
+    - meetingiq-corpus-forecasts

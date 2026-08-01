@@ -21,10 +21,10 @@ Read and follow: [`../MEETINGIQ_PHASE1_IMPLEMENTATION.md`](../MEETINGIQ_PHASE1_I
 
 ## Exit Criteria
 
-- [ ] All mock sources ingested through Zambyl connectors only
-- [ ] Incremental sync verified
-- [ ] Search index populated after sync
-- [ ] No MeetingIQ code reads mock APIs directly
+- [x] All mock sources ingested through Zambyl connectors only
+- [x] Incremental sync verified
+- [x] Search index populated after sync
+- [x] No MeetingIQ code reads mock APIs directly
 
 ## Do Not
 

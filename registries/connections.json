@@ -1,0 +1,119 @@
+[
+  {
+    "connection_id": "conn_meetingiq_crm",
+    "connector_id": "meetingiq.crm",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ CRM Mock",
+    "config": {
+      "base_url": "http://localhost:4001",
+      "api_key": "mock-enterprise-key"
+    },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": [
+        "meetingiq-corpus-accounts",
+        "meetingiq-corpus-opportunities",
+        "meetingiq-corpus-leads",
+        "meetingiq-corpus-products",
+        "meetingiq-corpus-forecasts"
+      ]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_calendar",
+    "connector_id": "meetingiq.calendar",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Calendar Mock",
+    "config": { "base_url": "http://localhost:4002", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-meetings"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_mail",
+    "connector_id": "meetingiq.mail",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Mail Mock",
+    "config": { "base_url": "http://localhost:4003", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-communications"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_slack",
+    "connector_id": "meetingiq.slack",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Slack Mock",
+    "config": { "base_url": "http://localhost:4004", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-communications"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_documents",
+    "connector_id": "meetingiq.documents",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Documents Mock",
+    "config": { "base_url": "http://localhost:4005", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-documents"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_tasks",
+    "connector_id": "meetingiq.tasks",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Tasks Mock",
+    "config": { "base_url": "http://localhost:4006", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-actions"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_support",
+    "connector_id": "meetingiq.support",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Support Mock",
+    "config": { "base_url": "http://localhost:4007", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-support"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_erp",
+    "connector_id": "meetingiq.erp",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ ERP Mock",
+    "config": { "base_url": "http://localhost:4008", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": ["meetingiq-corpus-forecasts"]
+    }
+  },
+  {
+    "connection_id": "conn_meetingiq_identity",
+    "connector_id": "meetingiq.identity",
+    "connector_version": "1.0.0",
+    "name": "MeetingIQ Identity Mock",
+    "config": { "base_url": "http://localhost:4009", "api_key": "mock-enterprise-key" },
+    "policy_scope": {
+      "default_classification": "internal",
+      "entitlements": ["meetingiq.read"],
+      "corpus_ids": []
+    }
+  }
+]

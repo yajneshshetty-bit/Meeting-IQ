@@ -10,7 +10,8 @@
 | 0B Domain Modeling | ✅ |
 | 1 Foundation (BFF + identity) | ✅ |
 | 2 Mock Enterprise | ✅ |
-| 3 Connectors | 🔜 Next |
+| 3 Connectors | ✅ |
+| 4 Domain Packages | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -42,6 +43,15 @@ npm run mock:test                 # 11 tests, no Docker required
 npm run mock:start                # ports 4001–4010 via Docker
 curl -H 'x-api-key: mock-enterprise-key' http://localhost:4001/v1/opportunities
 curl -X POST http://localhost:4010/v1/scenarios/pre_meeting/run
+```
+
+### Connectors (Phase 3)
+
+```bash
+npm run mock:start                      # mock sources :4001–4009
+npm run connectors:register             # register in Zambyl Postgres
+npm run connectors:bootstrap-sync         # ingest all mock data
+npm run connectors:test                   # 31 connector tests
 ```
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):
