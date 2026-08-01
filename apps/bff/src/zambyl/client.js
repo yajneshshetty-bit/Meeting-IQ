@@ -66,6 +66,15 @@ export class ZambylClient {
   async getCatalog(userContext) {
     return this.request('/v1/platform/catalog', { userContext });
   }
+
+  /** @param {object} userContext @param {{ profile: string, query?: string, limit?: number }} params */
+  async search(userContext, { profile, query = '', limit = 50 } = {}) {
+    return this.request('/v1/search:query', {
+      method: 'POST',
+      userContext,
+      body: { profile, query, limit },
+    });
+  }
 }
 
 export const zambylClient = new ZambylClient();

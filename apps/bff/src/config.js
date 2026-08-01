@@ -6,6 +6,7 @@ export const config = {
     apiUrl: (process.env.ZAMBYL_API_URL || 'http://localhost:8080').replace(/\/$/, ''),
     apiKey: process.env.ZAMBYL_API_KEY || 'test-harness-key',
     workloadId: process.env.ZAMBYL_WORKLOAD_ID || 'meetingiq-bff',
+    databaseUrl: process.env.ZAMBYL_DATABASE_URL || 'postgres://zambyl:zambyl@localhost:5432/zambyl',
   },
   devDefaultUserId: process.env.MEETINGIQ_DEV_DEFAULT_USER_ID || 'user_alex',
 };

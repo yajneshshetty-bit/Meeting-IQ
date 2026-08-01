@@ -20,6 +20,10 @@
 | Notifications | Operations + BFF Events | No |
 | Live Updates | Outbox + Materialization + BFF SSE | No |
 | BFF health | Application foundation | No |
+| Command Center overview | Search + canonical + BFF aggregation | No |
+| Executive pipeline | Search profile + BFF rollups | No |
+| Freshness indicators | BFF read model metadata | No |
+| Widget configuration | BFF persistence | No |
 | Zambyl catalog probe | Public catalog API | No |
 | User auth context | BFF + entitlements headers | No |
 | Pre-meeting Brief | Experience Package | No |
@@ -48,17 +52,23 @@ When implementing a feature:
 | Feature | Platform Capability Validated | Package / API | Kernel Modified? | Implementation | Test |
 |---------|------------------------------|---------------|------------------|----------------|------|
 | BFF health + identity | Application layer (Phase 1) | No | `apps/bff` | foundation.test.js |
+| Command Center overview | Search + canonical aggregation | `POST /v1/search:query` | No | `GET /api/command-center/overview` | command-center.test.js |
+| Weekly agenda | Search profile + canonical | `meetingiq.agenda-v1` | No | `GET /api/command-center/agenda` | command-center.test.js |
+| At-risk deals | Analytics profile + BFF scope | `meetingiq.at-risk-v1` | No | `GET /api/command-center/at-risk` | command-center.test.js |
+| Actions due | Canonical tasks + BFF scope | canonical_entities | No | `GET /api/command-center/actions-due` | command-center.test.js |
+| Executive pipeline | Search + BFF rollups | `meetingiq.executive-pipeline-v1` | No | `GET /api/executive/pipeline` | executive.test.js |
+| AI forecast rollup | Canonical forecast + BFF | `ai_forecast` materialization key | No | `GET /api/executive/forecast` | executive.test.js |
+| Rising risk | Canonical + BFF scope | `rising_risk` materialization key | No | `GET /api/executive/rising-risk` | executive.test.js |
+| Support diagnostics | Canonical support cases | canonical_entities | No | `GET /api/support/diagnostics` | executive.test.js |
+| Widget configuration | BFF persistence | `widget_configs` table | No | `/api/widgets/config` | widgets.test.js |
+| Role-based scoping | BFF hierarchy enforcement | Policy + entitlements | No | `services/scope.js` | scope.test.js |
+| Freshness indicators | BFF read model metadata | `withFreshness()` | No | all BFF routes | command-center.test.js |
 | Zambyl connectivity probe | Public catalog API | No | `GET /api/platform/zambyl` | foundation.test.js |
 | User hierarchy + entitlements | BFF auth + policy mapping | No | `GET /api/me` | foundation.test.js |
 | Company Research | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
 | Voice of Customer | Search + Experience Package | `POST /v1/search:query` | No | _TBD_ | _TBD_ |
 | Risk Score | Materialization + Analytics Profile | Experience / analytics | No | `meetingiq.risk-scoring-v1` | domain.test.js |
 | At-risk Deals | Analytics Profile + Experience | `POST /v1/experiences:execute` | No | `meetingiq.at-risk-v1` | domain.test.js |
-| Meeting Cards | Canonical entities + Search | Search projection | No | `meetingiq.agenda-v1` | integration.test.js |
-| Live Agenda | Connector + Search Projection | Connector sync → search | No | `connectors/` + `registries/search-profiles.json` | integration.test.js |
-| Executive Dashboard | Domain Package + BFF aggregation | Domain entitlements | No | `packages/domain/` | domain.test.js |
-| Pipeline View | Search Profile + Materialization | `POST /v1/search:query` | No | `meetingiq.pipeline-v1` | integration.test.js |
-| Role-based Access | Policy Bundle + BFF enforcement | Policy + entitlements | No | `registries/policy-bundles.json` | domain.test.js |
 | AI Forecast Explanation | Experience Package + Template | `POST /v1/experiences:execute` | No | `meetingiq-forecast-template` | domain.test.js |
 | QBR Narrative | Experience Package | `POST /v1/experiences:execute` | No | _Phase 7_ | _TBD_ |
 | Follow-up Draft | Experience Package + Conversations | Execute + Conversations | No | _Phase 7_ | _TBD_ |
@@ -73,7 +83,6 @@ When implementing a feature:
 | Identity Ingestion | Connector Plugin | `@zambyl/connectors` | No | `connectors/identity/` | connector-plugins.test.js |
 | Domain package | Domain Package | `meetingiq@1.0.0` | No | `packages/domain/` | domain.test.js |
 | Connector Health | Operations poll | `GET /v1/operations/{id}` | No | _TBD_ | _TBD_ |
-| Freshness Indicators | Materialization metadata | BFF read model | No | _TBD_ | _TBD_ |
 
 ---
 
@@ -81,7 +90,7 @@ When implementing a feature:
 
 | Metric | Value |
 |--------|-------|
-| Total features implemented | 14 |
+| Total features implemented | 24 |
 | Features using Experience Packages | 0 |
 | Features using Search | 4 |
 | Features using Connectors | 9 |

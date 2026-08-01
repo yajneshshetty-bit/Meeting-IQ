@@ -529,9 +529,9 @@ Each phase has a dedicated execution prompt in [`phases/`](./phases/).
 
 **Exit criteria:**
 
-- [ ] BFF returns real data from Zambyl (not mock sources)
-- [ ] Role-based access enforced server-side
-- [ ] Every BFF endpoint logged in PLATFORM_USAGE_REPORT
+- [x] BFF returns real data from Zambyl (not mock sources)
+- [x] Role-based access enforced server-side
+- [x] Every BFF endpoint logged in PLATFORM_USAGE_REPORT
 
 **Prompt:** [`phases/PHASE_05_BFF.md`](./phases/PHASE_05_BFF.md)
 

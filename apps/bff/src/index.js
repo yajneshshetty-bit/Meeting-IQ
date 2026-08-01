@@ -5,6 +5,11 @@ import { config } from './config.js';
 import { closePool, query } from './db.js';
 import { authMiddleware } from './auth/middleware.js';
 import { zambylClient } from './zambyl/client.js';
+import { closeCanonicalPool } from './services/canonical.js';
+import { registerCommandCenterRoutes } from './routes/command-center.js';
+import { registerExecutiveRoutes } from './routes/executive.js';
+import { registerSupportRoutes } from './routes/support.js';
+import { registerWidgetRoutes } from './routes/widgets.js';
 
 export async function buildApp() {
   const app = Fastify({ logger: true });
@@ -14,7 +19,7 @@ export async function buildApp() {
   app.get('/health', async () => ({
     status: 'ok',
     service: 'meetingiq-bff',
-    phase: '1-foundation',
+    phase: '5-bff-product-api',
   }));
 
   app.get('/api/me', async (req) => ({
@@ -63,6 +68,11 @@ export async function buildApp() {
     return { database: 'meetingiq', user_count: res.rows[0].user_count };
   });
 
+  await registerCommandCenterRoutes(app);
+  await registerExecutiveRoutes(app);
+  await registerSupportRoutes(app);
+  await registerWidgetRoutes(app);
+
   return app;
 }
 
@@ -78,6 +88,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
     process.on(signal, async () => {
       await app.close();
       await closePool();
+      await closeCanonicalPool();
       process.exit(0);
     });
   }

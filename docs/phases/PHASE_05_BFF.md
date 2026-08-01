@@ -17,10 +17,10 @@ Read and follow: [`../MEETINGIQ_PHASE1_IMPLEMENTATION.md`](../MEETINGIQ_PHASE1_I
 
 ## Exit Criteria
 
-- [ ] BFF returns real Zambyl data (verify no mock source imports in BFF)
-- [ ] Sales Rep sees only scoped data
-- [ ] VP sees org rollups
-- [ ] Admin sees all; Support sees diagnostics only
+- [x] BFF returns real Zambyl data (verify no mock source imports in BFF)
+- [x] Sales Rep sees only scoped data
+- [x] VP sees org rollups
+- [x] Admin sees all; Support sees diagnostics only
 
 ## Do Not
 

@@ -12,7 +12,8 @@
 | 2 Mock Enterprise | ✅ |
 | 3 Connectors | ✅ |
 | 4 Domain Packages | ✅ |
-| 5 BFF Business Routes | 🔜 Next |
+| 5 BFF Product API | ✅ |
+| 6 UI | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -60,6 +61,16 @@ npm run connectors:test                   # 31 connector tests
 ```bash
 npm run domain:register                 # register profiles, policies, templates, activate domain
 npm run domain:test                       # 7 tests
+```
+
+### BFF Product API (Phase 5)
+
+```bash
+npm run migrate                         # includes widget_configs table
+npm run dev                             # BFF :3001
+curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/command-center/overview
+curl -H 'x-meetingiq-user-id: user_leader_1' http://localhost:3001/api/executive/pipeline
+curl -H 'x-meetingiq-user-id: user_support' http://localhost:3001/api/support/diagnostics
 ```
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):
