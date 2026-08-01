@@ -10,9 +10,10 @@ MeetingIQ validates that a real enterprise application can be built entirely on 
 
 | Phase | Status |
 |-------|--------|
-| 0A Zambyl Readiness Audit | ✅ Complete — [audit](./docs/ZAMBYL_READINESS_AUDIT.md) |
-| 0B Domain Modeling | 🔜 Next |
-| 1–10 Implementation | Pending |
+| 0A Zambyl Readiness Audit | ✅ Complete |
+| 0B Domain Modeling | ✅ Complete — [domain model](./docs/DOMAIN_MODEL.md) |
+| 1 Foundation | 🔜 Next |
+| 2–10 Implementation | Pending |
 
 ## Overarching Success
 

@@ -8,7 +8,9 @@ MeetingIQ Phase 1 is the **first production application** built on the frozen [Z
 |----------|---------|
 | [MEETINGIQ_PHASE1_IMPLEMENTATION.md](./MEETINGIQ_PHASE1_IMPLEMENTATION.md) | Master PRD, architecture contract, and phased implementation roadmap |
 | [MEETINGIQ_ARCHITECTURAL_DECISIONS.md](./MEETINGIQ_ARCHITECTURAL_DECISIONS.md) | Application ADRs (MIQ-NNN) — record decisions, not commit messages |
+| [DOMAIN_MODEL.md](./DOMAIN_MODEL.md) | Entity definitions, ERD, Zambyl + source mappings (Phase 0B) |
 | [ENTITY_LIFECYCLE.md](./ENTITY_LIFECYCLE.md) | Per-entity lifecycle — investigate here when updates fail |
+| [PRD Screenshots](./prd/) | Phase 1 UI requirement reference images |
 | [PLATFORM_USAGE_REPORT.md](./PLATFORM_USAGE_REPORT.md) | Every feature → which platform capability validated it |
 | [PLATFORM_GAP_LOG.md](./PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap input |
 | [REALTIME_CORRECTNESS_MATRIX.md](./REALTIME_CORRECTNESS_MATRIX.md) | Expected propagation path per source event |
@@ -24,7 +26,8 @@ Execute phases sequentially. Each phase prompt lives in [`phases/`](./phases/) a
 
 ```
 Phase 0A → Zambyl Readiness Audit ✅ Complete
-Phase 0B → MeetingIQ Domain Modeling (next)
+Phase 0B → Domain Modeling ✅ Complete
+Phase 1  → Foundation (next)
 Phase 1  → Foundation
 Phase 2  → Mock Enterprise Systems
 Phase 3  → Connectors
