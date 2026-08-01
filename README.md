@@ -2,56 +2,51 @@
 
 **First production application on the [Zambyl Platform](https://github.com/yajneshshetty-bit/Zambyl) (v1.0.1).**
 
-MeetingIQ validates that a real enterprise application can be built entirely on top of a frozen platform kernel — without modifying `zambyl-core/`.
-
 ## Status
-
-**Phase 0A — Complete.** Proceeding to Phase 0B (Domain Modeling).
 
 | Phase | Status |
 |-------|--------|
-| 0A Zambyl Readiness Audit | ✅ Complete |
-| 0B Domain Modeling | ✅ Complete — [domain model](./docs/DOMAIN_MODEL.md) |
-| 1 Foundation | 🔜 Next |
-| 2–10 Implementation | Pending |
+| 0A Zambyl Readiness | ✅ |
+| 0B Domain Modeling | ✅ |
+| 1 Foundation (BFF + identity) | ✅ |
+| 2 Mock Enterprise | 🔜 Next |
 
-## Overarching Success
+## Quick Start (Phase 1)
 
-> Success is not that MeetingIQ works. Success is that another team could build BankingIQ using the same extension model without kernel changes.
+**Prerequisites:** Node.js ≥ 20, Docker, Zambyl v1.0.1 running (optional for connectivity test)
+
+```bash
+# MeetingIQ
+git clone git@github.com:yajneshshetty-bit/Meeting-IQ.git
+cd Meeting-IQ
+docker compose up -d
+npm install
+npm run bootstrap
+npm test
+npm run dev
+```
+
+BFF: http://localhost:3001
+
+```bash
+curl http://localhost:3001/health
+curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/me
+curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/platform/zambyl
+```
+
+**Zambyl** (separate repo — start gateway on :8080 for full connectivity):
+
+```bash
+cd /path/to/Zambyl/zambyl-core
+docker compose up -d
+cd .. && npm run bootstrap && npm run dev -w @zambyl/gateway
+```
 
 ## Documentation
 
-Start here: [`docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md`](docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md)
+[`docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md`](docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md) — master specification
 
-| Document | Purpose |
-|----------|---------|
-| [Master Implementation Spec](docs/MEETINGIQ_PHASE1_IMPLEMENTATION.md) | Authoritative PRD and phased roadmap |
-| [Architectural Decisions](docs/MEETINGIQ_ARCHITECTURAL_DECISIONS.md) | Application ADRs (MIQ-NNN) |
-| [Entity Lifecycle](docs/ENTITY_LIFECYCLE.md) | Per-entity create/update/invalidate paths |
-| [Platform Usage Report](docs/PLATFORM_USAGE_REPORT.md) | Which platform capability validated each feature |
-| [Platform Gap Log](docs/PLATFORM_GAP_LOG.md) | Platform limitations → v1.1 roadmap |
-| [Real-Time Correctness Matrix](docs/REALTIME_CORRECTNESS_MATRIX.md) | Event propagation verification |
-| [Phase Prompts](docs/phases/) | Cursor-executable phase-by-phase prompts |
-
-## Execution Model
-
-**Do not implement in a single pass.**
-
-```
-Phase 0A → Zambyl Readiness Audit (no code)
-Phase 0B → Domain Modeling (no code)
-Phase 1–10 → Implementation
-```
-
-## Fresh Start
-
-This repository is a clean implementation. Do not copy from prior local MeetingIQ prototypes.
-
-## Platform
-
-```
-git@github.com:yajneshshetty-bit/Zambyl.git  (tag v1.0.1)
-```
+[`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md) — ports, env vars, topology
 
 ## License
 

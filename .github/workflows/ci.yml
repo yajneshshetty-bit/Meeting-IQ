@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: meetingiq
+          POSTGRES_PASSWORD: meetingiq
+          POSTGRES_DB: meetingiq
+        ports:
+          - 5434:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MEETINGIQ_DATABASE_URL: postgres://meetingiq:meetingiq@localhost:5434/meetingiq
+      ZAMBYL_API_URL: http://localhost:8080
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bootstrap identity schema
+        run: npm run bootstrap
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test

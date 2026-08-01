@@ -1,7 +1,6 @@
 # Environment Configuration
 
-> Local development topology for MeetingIQ Phase 1.  
-> **Phase:** 0A — no application services running yet.
+**Phase:** 0A complete → 0B complete → **Phase 1 complete**
 
 ---
 
@@ -81,13 +80,21 @@ Configure model provider via Zambyl registry binding (`model_catalog` / capabili
 
 ---
 
-## MeetingIQ Services (planned — Phase 1+)
+### MeetingIQ BFF bootstrap
 
-| Service | Port | Phase |
-|---------|------|-------|
-| MeetingIQ BFF | `3001` | 1 |
-| MeetingIQ UI | `3000` | 6 |
-| MeetingIQ DB (Postgres) | `5433` | 1 |
+```bash
+cd /home/hp/Desktop/Meeting-IQ
+docker compose up -d          # Postgres on localhost:5434
+npm install
+npm run bootstrap             # migrate + seed dev users
+npm run dev                   # BFF on :3001
+npm test
+```
+
+Copy `apps/bff/.env.example` to `apps/bff/.env` if overriding defaults.
+
+**Dev users:** `user_alex` (AE), `user_manager_1`, `user_leader_1`, `user_se_1`, `user_admin`, `user_support`, `user_priya`
+
 
 ---
 

@@ -172,6 +172,26 @@ When a decision changes, add a new MIQ entry and mark the old one Superseded wit
 
 ---
 
+## MIQ-008 — Dev auth via x-meetingiq-user-id header
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-01 |
+| **Phase** | 1 |
+
+**Context:** Phase 1 BFF needs auth middleware without UI login flow.
+
+**Decision:** Development and test auth uses `x-meetingiq-user-id` header resolving to MeetingIQ DB users. Production session auth replaces this in a later phase.
+
+**Reason:** Unblocks BFF and Zambyl integration testing before UI exists.
+
+**Consequences:** Documented in ENVIRONMENT.md; tests use header explicitly.
+
+**Platform capability validated:** BFF boundary (MIQ-001)
+
+---
+
 ## Template (copy for new decisions)
 
 ```markdown
@@ -207,3 +227,4 @@ When a decision changes, add a new MIQ entry and mark the old one Superseded wit
 | MIQ-005 | Lead and Opportunity distinct types | Accepted |
 | MIQ-006 | Notifications BFF-derived | Accepted |
 | MIQ-007 | Product as first-class entity | Accepted |
+| MIQ-008 | Dev auth via x-meetingiq-user-id | Accepted |

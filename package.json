@@ -1,0 +1,25 @@
+{
+  "name": "meeting-iq",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MeetingIQ — first production application on Zambyl Platform",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @meetingiq/bff",
+    "start": "npm run start -w @meetingiq/bff",
+    "migrate": "node scripts/migrate.js",
+    "seed": "node scripts/seed-dev-users.js",
+    "bootstrap": "npm run migrate && npm run seed",
+    "test": "npm run test -w @meetingiq/bff",
+    "lint": "npm run lint -w @meetingiq/bff"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

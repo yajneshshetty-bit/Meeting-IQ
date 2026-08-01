@@ -19,6 +19,9 @@
 | Risk Score | Experience + Materialization | No |
 | Notifications | Operations + BFF Events | No |
 | Live Updates | Outbox + Materialization + BFF SSE | No |
+| BFF health | Application foundation | No |
+| Zambyl catalog probe | Public catalog API | No |
+| User auth context | BFF + entitlements headers | No |
 | Pre-meeting Brief | Experience Package | No |
 | Approvals | Actions Runtime | No |
 | CRM Sync | Connector Plugin | No |
@@ -44,7 +47,9 @@ When implementing a feature:
 
 | Feature | Platform Capability Validated | Package / API | Kernel Modified? | Implementation | Test |
 |---------|------------------------------|---------------|------------------|----------------|------|
-| Pre-meeting Brief | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
+| BFF health + identity | Application layer (Phase 1) | No | `apps/bff` | foundation.test.js |
+| Zambyl connectivity probe | Public catalog API | No | `GET /api/platform/zambyl` | foundation.test.js |
+| User hierarchy + entitlements | BFF auth + policy mapping | No | `GET /api/me` | foundation.test.js |
 | Company Research | Experience Package | `POST /v1/experiences:execute` | No | _TBD_ | _TBD_ |
 | Voice of Customer | Search + Experience Package | `POST /v1/search:query` | No | _TBD_ | _TBD_ |
 | Risk Score | Materialization + Analytics Profile | Experience / analytics | No | _TBD_ | _TBD_ |
