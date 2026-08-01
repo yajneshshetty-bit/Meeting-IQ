@@ -20,10 +20,10 @@ Read and follow:
 
 ## Exit Criteria
 
-- [ ] All matrix rows verified (checkboxes checked)
-- [ ] Pre-meeting scenario passes end-to-end
-- [ ] No full rebuild on single entity change
-- [ ] Anti-patterns checklist clear
+- [x] All matrix rows verified (checkboxes checked)
+- [x] Pre-meeting scenario passes end-to-end
+- [x] No full rebuild on single entity change
+- [x] Anti-patterns checklist clear
 
 ## Do Not
 

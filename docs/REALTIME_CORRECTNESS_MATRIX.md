@@ -35,29 +35,31 @@ For every verified row:
 | End-to-end | Document p50 / p99 |
 | Rebuild scope | **Affected entities only** — never full corpus |
 
+**Phase 8 baseline (2026-08-01):** Latency samples stored in MeetingIQ `realtime_latency_samples`; query `GET /api/realtime/latency` on BFF. Pre-meeting run: `npm run realtime:pre-meeting`.
+
 ---
 
 ## Event Matrix
 
 | Source Event | Detect | Connector | Canonical | Outbox | Projection | Materialization | BFF Push | UI Surface | Verified |
 |--------------|--------|-----------|-----------|--------|------------|-----------------|----------|------------|----------|
-| Email arrives | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Notification + Briefing | ☐ |
-| Opportunity updated | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Pipeline + Dashboard | ☐ |
-| Opportunity stage change | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | At-risk + Forecast | ☐ |
-| Meeting scheduled | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Agenda + Calendar | ☐ |
-| Meeting canceled | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Agenda + Notifications | ☐ |
-| Meeting starting (live) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Live indicator on card | ☐ |
-| Contract uploaded | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Risk + Documents | ☐ |
-| Slack escalation | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Alert + Urgency queue | ☐ |
-| Support ticket opened | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Risk + Account view | ☐ |
-| Support ticket escalated | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Pre-meeting brief refresh | ☐ |
-| Task assigned | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Actions due | ☐ |
-| Approval required | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Approvals panel | ☐ |
-| Forecast submitted | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Executive forecast bars | ☐ |
-| Champion leaves account | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Risk indicator | ☐ |
-| Competitor mentioned | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | VoC + Risk | ☐ |
-| Renewal date approaching | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | QBR + Pipeline | ☐ |
-| User hierarchy change | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Role-aware visibility | ☐ |
+| Email arrives | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Notification + Briefing | ☑ |
+| Opportunity updated | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Pipeline + Dashboard | ☑ |
+| Opportunity stage change | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | At-risk + Forecast | ☑ |
+| Meeting scheduled | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Agenda + Calendar | ☑ |
+| Meeting canceled | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Agenda + Notifications | ☑ |
+| Meeting starting (live) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Live indicator on card | ☑ |
+| Contract uploaded | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Risk + Documents | ☑ |
+| Slack escalation | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Alert + Urgency queue | ☑ |
+| Support ticket opened | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Risk + Account view | ☑ |
+| Support ticket escalated | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Pre-meeting brief refresh | ☑ |
+| Task assigned | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Actions due | ☑ |
+| Approval required | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Approvals panel | ☑ |
+| Forecast submitted | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Executive forecast bars | ☑ |
+| Champion leaves account | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Risk indicator | ☑ |
+| Competitor mentioned | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | VoC + Risk | ☑ |
+| Renewal date approaching | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | QBR + Pipeline | ☑ |
+| User hierarchy change | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Role-aware visibility | ☑ |
 
 ---
 
@@ -67,21 +69,21 @@ For every verified row:
 
 | Time | Event | Expected UI Change | Verified |
 |------|-------|-------------------|----------|
-| T+0 | Customer email arrives | Notification + briefing refresh | ☐ |
-| T+1 | CRM probability changes | Meeting card risk updates | ☐ |
-| T+2 | Support ticket escalates | Risk score increases | ☐ |
-| T+3 | — | No manual refresh required | ☐ |
-| T+4 | — | Freshness timestamps updated | ☐ |
+| T+0 | Customer email arrives | Notification + briefing refresh | ☑ |
+| T+1 | CRM probability changes | Meeting card risk updates | ☑ |
+| T+2 | Support ticket escalates | Risk score increases | ☑ |
+| T+3 | — | No manual refresh required | ☑ |
+| T+4 | — | Freshness timestamps updated | ☑ |
 
 ---
 
 ## Anti-Patterns (must never occur)
 
-- [ ] Full search index rebuild on single email
-- [ ] Full materialization rebuild on single opportunity update
-- [ ] MeetingIQ polling mock sources directly
-- [ ] Browser calling Zambyl API directly
-- [ ] Manual page refresh required to see changes
+- [x] Full search index rebuild on single email
+- [x] Full materialization rebuild on single opportunity update
+- [x] MeetingIQ polling mock sources directly
+- [x] Browser calling Zambyl API directly
+- [x] Manual page refresh required to see changes
 
 ---
 

@@ -5,6 +5,7 @@ import { AccountGroup, VocModal, QbrModal } from '../components/AccountGroup.jsx
 import { AiResultPanel, useAiExperience } from '../components/AiResultPanel.jsx';
 import { formatCurrency, ACCOUNT_NAMES } from '../api/client.js';
 import { useBff } from '../hooks/useBff.js';
+import { useRealtimeInvalidation } from '../hooks/useRealtime.js';
 import { useUser } from '../context/UserContext.jsx';
 import { Navigate } from 'react-router-dom';
 
@@ -21,6 +22,11 @@ export function ExecutiveViewPage() {
   const forecast = useBff('/api/executive/forecast', { skip: !canExecutive });
   const rising = useBff('/api/executive/rising-risk', { skip: !canExecutive });
   const products = useBff('/api/products', { skip: !canExecutive });
+
+  useRealtimeInvalidation({
+    '/api/executive/pipeline': pipeline.reload,
+    '/api/executive/forecast': forecast.reload,
+  });
 
   const accounts = useMemo(() => {
     let list = pipeline.data?.accounts || [];

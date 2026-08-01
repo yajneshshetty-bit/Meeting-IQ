@@ -25,7 +25,7 @@ test('GET /health reports phase 5', async (t) => {
   await withApp(t, async (app) => {
     const res = await app.inject({ method: 'GET', url: '/health' });
     assert.equal(res.statusCode, 200);
-    assert.equal(res.json().phase, '7-ai-experiences');
+    assert.equal(res.json().phase, '8-realtime');
   });
 });
 

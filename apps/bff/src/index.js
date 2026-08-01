@@ -14,6 +14,8 @@ import { registerWidgetRoutes } from './routes/widgets.js';
 import { registerSearchRoutes } from './routes/search.js';
 import { registerNotificationRoutes } from './routes/notifications.js';
 import { registerAiRoutes } from './routes/ai.js';
+import { registerRealtimeRoutes } from './routes/realtime.js';
+import { startOutboxWatcher, closeWatcherPool } from './services/realtime/watcher.js';
 
 export async function buildApp() {
   const app = Fastify({ logger: true });
@@ -28,7 +30,7 @@ export async function buildApp() {
   app.get('/health', async () => ({
     status: 'ok',
     service: 'meetingiq-bff',
-    phase: '7-ai-experiences',
+    phase: '8-realtime',
   }));
 
   app.get('/api/me', async (req) => ({
@@ -84,12 +86,16 @@ export async function buildApp() {
   await registerSearchRoutes(app);
   await registerNotificationRoutes(app);
   await registerAiRoutes(app);
+  await registerRealtimeRoutes(app);
 
   return app;
 }
 
 export async function startServer() {
   const app = await buildApp();
+  if (process.env.MEETINGIQ_REALTIME_WATCHER !== '0') {
+    startOutboxWatcher();
+  }
   await app.listen({ port: config.port, host: config.host });
   return app;
 }
@@ -101,6 +107,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.a
       await app.close();
       await closePool();
       await closeCanonicalPool();
+      await closeWatcherPool();
       process.exit(0);
     });
   }

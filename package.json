@@ -28,6 +28,7 @@
     "experiences:register": "node scripts/register-experiences.js",
     "experiences:generate": "node packages/experiences/generate-packages.js",
     "experiences:test": "node --test packages/experiences/tests/*.test.js",
+    "realtime:pre-meeting": "node scripts/pre-meeting-scenario.js",
     "lint": "npm run lint -w @meetingiq/bff"
   },
   "engines": {

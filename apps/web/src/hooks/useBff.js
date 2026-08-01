@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { bffFetch } from '../api/client.js';
 import { useUser } from '../context/UserContext.jsx';
 
@@ -8,6 +8,9 @@ export function useBff(path, { deps = [], skip = false } = {}) {
   const [freshness, setFreshness] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const reload = useCallback(() => setRefreshKey((k) => k + 1), []);
 
   useEffect(() => {
     if (skip || !userId) return;
@@ -27,7 +30,7 @@ export function useBff(path, { deps = [], skip = false } = {}) {
         if (!cancelled) setLoading(false);
       });
     return () => { cancelled = true; };
-  }, [path, userId, skip, ...deps]);
+  }, [path, userId, skip, refreshKey, ...deps]);
 
-  return { data, freshness, loading, error };
+  return { data, freshness, loading, error, reload };
 }

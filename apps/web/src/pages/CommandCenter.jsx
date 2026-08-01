@@ -7,6 +7,7 @@ import { ResearchBanner } from '../components/ResearchBanner.jsx';
 import { WidgetSettingsModal } from '../components/WidgetSettingsModal.jsx';
 import { FreshnessBadge } from '../components/FreshnessBadge.jsx';
 import { useBff } from '../hooks/useBff.js';
+import { useRealtimeInvalidation } from '../hooks/useRealtime.js';
 
 export function CommandCenterPage() {
   const notifRef = useRef(null);
@@ -14,6 +15,12 @@ export function CommandCenterPage() {
   const overview = useBff('/api/command-center/overview');
   const agenda = useBff('/api/command-center/agenda');
   const notifications = useBff('/api/notifications');
+
+  useRealtimeInvalidation({
+    '/api/command-center/overview': overview.reload,
+    '/api/command-center/agenda': agenda.reload,
+    '/api/notifications': notifications.reload,
+  });
 
   const scrollToNotif = () => notifRef.current?.scrollIntoView({ behavior: 'smooth' });
 
