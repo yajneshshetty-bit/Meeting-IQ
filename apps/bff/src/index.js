@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+import cors from '@fastify/cors';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { config } from './config.js';
@@ -10,16 +11,23 @@ import { registerCommandCenterRoutes } from './routes/command-center.js';
 import { registerExecutiveRoutes } from './routes/executive.js';
 import { registerSupportRoutes } from './routes/support.js';
 import { registerWidgetRoutes } from './routes/widgets.js';
+import { registerSearchRoutes } from './routes/search.js';
+import { registerNotificationRoutes } from './routes/notifications.js';
 
 export async function buildApp() {
   const app = Fastify({ logger: true });
+
+  await app.register(cors, {
+    origin: config.corsOrigins,
+    allowedHeaders: ['content-type', 'x-meetingiq-user-id'],
+  });
 
   app.addHook('onRequest', authMiddleware);
 
   app.get('/health', async () => ({
     status: 'ok',
     service: 'meetingiq-bff',
-    phase: '5-bff-product-api',
+    phase: '6-ui-backend',
   }));
 
   app.get('/api/me', async (req) => ({
@@ -72,6 +80,8 @@ export async function buildApp() {
   await registerExecutiveRoutes(app);
   await registerSupportRoutes(app);
   await registerWidgetRoutes(app);
+  await registerSearchRoutes(app);
+  await registerNotificationRoutes(app);
 
   return app;
 }

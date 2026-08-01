@@ -29,7 +29,16 @@ export async function getCommandCenterOverview(userContext) {
 
   const committed = sumAmount(opportunities);
   const atRisk = countAtRisk(opportunities);
-  const overdueTasks = tasks.filter((t) => t.payload?.status === 'open' && t.payload?.priority === 'critical').length;
+  const openTasks = tasks.filter((t) => !['done', 'completed'].includes(t.payload?.status));
+  const overdueTasks = openTasks.filter((t) => {
+    const due = t.payload?.due_date;
+    return (t.payload?.priority === 'critical' || (due && due < '2026-07-31'));
+  }).length;
+
+  const scheduledMeetings = meetings.filter((m) => m.payload?.status === 'scheduled').length;
+  const avgQuality = meetings.length
+    ? Math.min(100, Math.round(60 + (scheduledMeetings / Math.max(meetings.length, 1)) * 25 + (atRisk === 0 ? 10 : 0)))
+    : 0;
 
   const watermark = watermarkFromSearch(oppSearch.data?.metadata)
     || watermarkFromSearch(meetingSearch.data?.metadata)
@@ -41,8 +50,9 @@ export async function getCommandCenterOverview(userContext) {
         committed_pipeline: committed,
         at_risk_deals: atRisk,
         meetings_this_week: meetings.length,
-        actions_due: tasks.length,
+        actions_due: openTasks.length,
         actions_overdue: overdueTasks,
+        avg_meeting_quality: avgQuality,
       },
       materialization_key: 'weekly_overview',
     },

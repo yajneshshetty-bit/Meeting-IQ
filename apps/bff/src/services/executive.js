@@ -33,6 +33,7 @@ export async function getExecutivePipeline(userContext) {
       amount: o.payload.amount,
       commit_amount: o.payload.commit_amount,
       risk_level: o.payload.risk_level,
+      product_id: o.payload.product_id,
     });
     byAccount[acct].total += Number(o.payload.commit_amount || o.payload.amount) || 0;
   }

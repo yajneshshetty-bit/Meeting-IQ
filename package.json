@@ -10,11 +10,12 @@
   ],
   "scripts": {
     "dev": "npm run dev -w @meetingiq/bff",
+    "dev:web": "npm run dev -w @meetingiq/web",
     "start": "npm run start -w @meetingiq/bff",
     "migrate": "node scripts/migrate.js",
     "seed": "node scripts/seed-dev-users.js",
     "bootstrap": "npm run migrate && npm run seed",
-    "test": "npm run test -w @meetingiq/bff && npm run mock:test && npm run connectors:test && npm run domain:test",
+    "test": "npm run test -w @meetingiq/bff && npm run test -w @meetingiq/web && npm run mock:test && npm run connectors:test && npm run domain:test",
     "mock:test": "node --test mock-services/tests/*.test.js",
     "mock:start": "docker compose --profile mock up -d",
     "mock:stop": "docker compose --profile mock down",

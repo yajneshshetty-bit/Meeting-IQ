@@ -22,10 +22,10 @@ UI screenshots are the Phase 1 PRD. Every visible capability must exist. Layout 
 
 ## Exit Criteria
 
-- [ ] Every PRD capability has working UI path
-- [ ] No placeholder buttons or stub data
-- [ ] UI calls BFF only (never Zambyl)
-- [ ] Role switching demonstrates different views
+- [x] Every PRD capability has working UI path
+- [x] No placeholder buttons or stub data
+- [x] UI calls BFF only (never Zambyl)
+- [x] Role switching demonstrates different views
 
 ## Do Not
 

@@ -61,6 +61,11 @@ When implementing a feature:
 | Rising risk | Canonical + BFF scope | `rising_risk` materialization key | No | `GET /api/executive/rising-risk` | executive.test.js |
 | Support diagnostics | Canonical support cases | canonical_entities | No | `GET /api/support/diagnostics` | executive.test.js |
 | Widget configuration | BFF persistence | `widget_configs` table | No | `/api/widgets/config` | widgets.test.js |
+| MeetingIQ Web UI | BFF-only SPA | React + Vite | No | `apps/web/` | api.test.js |
+| Command Center UI | BFF read models | `/api/command-center/*` | No | `CommandCenter.jsx` | command-center.test.js |
+| Executive View UI | BFF rollups | `/api/executive/*` | No | `ExecutiveView.jsx` | executive.test.js |
+| Global search UI | BFF search proxy | `/api/search` | No | `SearchModal.jsx` | search-notifications.test.js |
+| Notification queue UI | BFF notifications | `/api/notifications` | No | `NotificationPanel.jsx` | search-notifications.test.js |
 | Role-based scoping | BFF hierarchy enforcement | Policy + entitlements | No | `services/scope.js` | scope.test.js |
 | Freshness indicators | BFF read model metadata | `withFreshness()` | No | all BFF routes | command-center.test.js |
 | Zambyl connectivity probe | Public catalog API | No | `GET /api/platform/zambyl` | foundation.test.js |
@@ -90,7 +95,7 @@ When implementing a feature:
 
 | Metric | Value |
 |--------|-------|
-| Total features implemented | 24 |
+| Total features implemented | 29 |
 | Features using Experience Packages | 0 |
 | Features using Search | 4 |
 | Features using Connectors | 9 |

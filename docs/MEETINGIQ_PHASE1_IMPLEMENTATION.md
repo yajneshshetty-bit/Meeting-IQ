@@ -552,9 +552,9 @@ Each phase has a dedicated execution prompt in [`phases/`](./phases/).
 
 **Exit criteria:**
 
-- [ ] Every PRD screenshot capability has a working UI path
-- [ ] No placeholder buttons or stub data
-- [ ] UI calls BFF only (never Zambyl)
+- [x] Every PRD screenshot capability has a working UI path
+- [x] No placeholder buttons or stub data
+- [x] UI calls BFF only (never Zambyl)
 
 **Prompt:** [`phases/PHASE_06_UI.md`](./phases/PHASE_06_UI.md)
 

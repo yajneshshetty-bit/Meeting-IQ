@@ -13,7 +13,8 @@
 | 3 Connectors | ✅ |
 | 4 Domain Packages | ✅ |
 | 5 BFF Product API | ✅ |
-| 6 UI | 🔜 Next |
+| 6 UI | ✅ |
+| 7 AI Experiences | 🔜 Next |
 
 ## Quick Start (Phase 1)
 
@@ -72,6 +73,15 @@ curl -H 'x-meetingiq-user-id: user_alex' http://localhost:3001/api/command-cente
 curl -H 'x-meetingiq-user-id: user_leader_1' http://localhost:3001/api/executive/pipeline
 curl -H 'x-meetingiq-user-id: user_support' http://localhost:3001/api/support/diagnostics
 ```
+
+### Web UI (Phase 6)
+
+```bash
+npm run dev                             # BFF :3001 (terminal 1)
+npm run dev:web                         # UI :5173 (terminal 2)
+```
+
+Open http://localhost:5173 — use role switcher (AE / Manager / SE / Leader) to see scoped data.
 
 **Zambyl** (separate repo — start gateway on :8080 for full connectivity):
 

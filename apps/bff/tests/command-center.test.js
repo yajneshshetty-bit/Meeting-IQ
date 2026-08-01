@@ -25,7 +25,7 @@ test('GET /health reports phase 5', async (t) => {
   await withApp(t, async (app) => {
     const res = await app.inject({ method: 'GET', url: '/health' });
     assert.equal(res.statusCode, 200);
-    assert.equal(res.json().phase, '5-bff-product-api');
+    assert.equal(res.json().phase, '6-ui-backend');
   });
 });
 

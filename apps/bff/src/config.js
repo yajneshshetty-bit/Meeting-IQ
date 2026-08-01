@@ -9,4 +9,5 @@ export const config = {
     databaseUrl: process.env.ZAMBYL_DATABASE_URL || 'postgres://zambyl:zambyl@localhost:5432/zambyl',
   },
   devDefaultUserId: process.env.MEETINGIQ_DEV_DEFAULT_USER_ID || 'user_alex',
+  corsOrigins: (process.env.MEETINGIQ_CORS_ORIGINS || 'http://localhost:5173,http://localhost:3000').split(','),
 };
